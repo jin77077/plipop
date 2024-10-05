@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/product/product.css}" rel="stylesheet">
+	<link th:href="@{/css/manager/manager.css}" rel="stylesheet">
+	<script th:src="@{/js/manager.js}"></script>
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<dl>
+			<!--상품등록 메뉴-->
+			<dt>
+				<p>상품등록</p>
+			</dt>
+			<dd>
+				<div class="container">
+					<div class="product-content">
+						<div class="product-title">
+							PRODUCT SAVE<br>
+							<span class="qna-sub-title">상품 등록</span>
+						</div>
+						<div class="product-body">
+							<form method="post" action="/manager/productSave" enctype="multipart/form-data">
+								<table class="product-write-table">
+									<tr>
+										<th>상품명</th>
+										<td><input type="text" class="product-input-title" id="productName" name="productName" required></td>
+									</tr>
+									<tr>
+										<th>카테고리</th>
+										<td>
+											<input id="category1" name="category" value="outer" type="radio" checked>
+											<label for="category1">OUTER</label>
+											<input id="category2" name="category" value="top" type="radio">
+											<label for="category2">TOP</label>
+											<input id="category3" name="category" value="pants" type="radio">
+											<label for="category3">PANTS</label>
+											<input id="category4" name="category" value="shoes" type="radio">
+											<label for="category4">SHOES</label>
+										</td>
+									</tr>
+									<tr>
+										<th>소비자가</th>
+										<td>
+											<input type="number" class="product-input" id="consumerPrice"
+												name="consumerPrice" min="0" max="1000000" required> 원
+										</td>
+									</tr>
+									<tr>
+										<th>할인율</th>
+										<td>
+											<input type="number" class="product-input" id="discountRate"
+												name="discountRate" min="0" max="100" value="0" required> %
+										</td>
+									</tr>
+									<tr>
+										<th>판매가</th>
+										<td>
+											<input type="number" class="product-input" id="salePrice" name="salePrice"
+												min="0" max="1000000" readOnly required> 원
+										</td>
+									</tr>
+									<tr>
+										<th>재고</th>
+										<td><input type="number" class="product-input" id="stock" name="stock" min="1" max="10000"
+												value="1" required></td>
+									</tr>
+									<tr>
+										<th>색상</th>
+										<td>
+											<div id="addColorList" class="addList">
+											</div>
+											<input type="text" class="product-input" id="colorInput" required>
+											<input type="button" id="colorAdd" value="추가"/>
+										</td>
+									</tr>
+									<tr>
+										<th>사이즈</th>
+										<td>
+											<div id="addSizeList" class="addList">
+											</div>
+											<input type="text" class="product-input" id="sizeInput" required>
+											<input type="button" id="sizeAdd" value="추가"/>
+										</td>
+									</tr>
+									<tr>
+										<th>추가사항</th>
+										<td>
+											<table class="addBtn-table">
+											<tr>
+												<td><span><img src="/img/btn/hot.png"></span></td>
+												<td><span><img src="/img/btn/mdPick.png"></span></td>
+												<td><span><img src="/img/btn/quick.png"></span></td>
+												<td><span><img src="/img/btn/best.png"></span></td>
+												<td><span><img src="/img/btn/sale.png"></span></td>
+											<tr style="height: 9px;">
+												<td><input type="checkbox" name="hotYn"></td>
+												<td><input type="checkbox" name="mdPickYn"></td>
+												<td><input type="checkbox" name="quickYn"></td>
+												<td><input type="checkbox" name="bestYn"></td>
+												<td><input type="checkbox" name="saleYn"></td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<th>대표이미지</th>
+										<td>
+											<div class="image-container">
+												<img id="preview-image" src="/img/preview-image.jpg">
+												<input style="display: block;" type="file" id="input-image" name="mainFile" required>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>상세이미지</th>
+										<td>
+											<input type="file" id="input-imgs" name="files" multiple />
+											<div id="imgs_wrap" class="imgs_wrap" required>
+											</div>
+										</td>
+									</tr>
+								</table>
+								<div class="product-bottom">
+									<a href="#" id="productSubmit">상품등록</a>
+									<a th:href="@{/}" class="writeBtn">취소</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</dd>
+			<!--상품수정 메뉴-->
+			<dt class="disableTab">
+				<p>상품수정</p>
+			</dt>
+			<dd class="hidden">
+				<div class="product-alter-container">
+					<div class="product-content">
+						<div class="product-title">
+							PRODUCT UPDATE<br>
+							<span class="qna-sub-title">상품 수정</span>
+						</div>
+						<ul class="guideInfo">
+							<li>상품이미지, 색상, 사이즈 변경은 불가능합니다</li>
+						</ul>
+						<div class="product-body">
+							<table class="product-alter-table">
+								<tr>
+									<th>이미지</th>
+									<th>상품명</th>
+									<th>소비자가</th>
+									<th>할인율</th>
+									<th>판매가</th>
+									<th>재고량</th>
+									<th>추가사항</th>
+									<th></th>
+								</tr>
+								<tr th:each="product : ${productList}" class="update-tr">
+									<td class="col-lg-1"><img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}" style="width : 100px;"></td>
+									<td class="col-lg-3">
+										<input type="hidden" class="update-productNo" th:value="${product.productNo}">
+										<input type="text" class="update-productName" th:value="${product.productName}" style="width:315px;">
+									</td>
+									<td class="col-lg-1"><input type="number" class="update-consumerPrice" min="0" max="1000000" th:value="${product.consumerPrice}" style="width:60px">원</td>
+									<td class="col-lg-1"><input type="number" class="update-discountRate" min="0" max="100" th:value="${product.discountRate}" style="width:35px">%</td>
+									<td class="col-lg-1"><input type="number" class="update-salePrice" min="0" max="1000000" th:value="${product.salePrice}" style="width:60px" readOnly>원</td>
+									<td class="col-lg-1"><input type="number" class="update-stock" min="1" max="10000" th:value="${product.stock}" style="width:52px"></td>
+									<td class="col-lg-3">
+										<table class="addBtn-table" style="width:85%">
+										<tr>
+											<td><span><img src="/img/btn/hot.png"></span></td>
+											<td><span><img src="/img/btn/mdPick.png"></span></td>
+											<td><span><img src="/img/btn/quick.png"></span></td>
+											<td><span><img src="/img/btn/best.png"></span></td>
+											<td><span><img src="/img/btn/sale.png"></span></td>
+										<tr style="height: 9px;">
+											<td><input type="checkbox" name="hotYn" th:checked="${product.hotYn}"></td>
+											<td><input type="checkbox" name="mdPickYn" th:checked="${product.mdPickYn}"></td>
+											<td><input type="checkbox" name="quickYn" th:checked="${product.quickYn}"></td>
+											<td><input type="checkbox" name="bestYn" th:checked="${product.bestYn}"></td>
+											<td><input type="checkbox" name="saleYn" th:checked="${product.saleYn}"></td>
+										</tr>
+										</table>
+									</td>
+									<td class="col-lg-1">
+										<div class="update-btn">수정</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</dd>
+			<!--회원관리 메뉴 (미완성)-->
+			<!--<dt class="disableTab">
+				<p>회원관리</p>
+			</dt>
+			<dd class="hidden">
+				회원관리
+			</dd>-->
+			<!--주문관리 메뉴 (미완성)-->
+			<!--<dt class="disableTab">
+				<p>주문관리</p>
+			</dt>
+			<dd class="hidden">
+				주문관리
+			</dd>-->
+	</section>
+</body>
+</html>

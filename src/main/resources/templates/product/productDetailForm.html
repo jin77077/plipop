@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/product/productDetail.css}" rel="stylesheet">
+	<script th:src="@{/js/productDetail.js}"></script>
+</head>
+<body>
+	<section layout:fragment="content">
+		<!--상품상세정보 화면-->
+		<div class="product-container">
+			<div class="product-head">
+				<!--메인이미지-->
+				<div class="product-head-img">
+					<img
+						th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${detail.category},productNo=${detail.productNo}, fileName=${detail.mainImage})}">
+				</div>
+				<!--상품정보화면-->
+				<div class="product-head-info">
+					<div class="btn-area">
+						<span th:if="${detail.hotYn}"><img src="/img/btn/hot.png"></span>
+						<span th:if="${detail.mdPickYn}"><img src="/img/btn/mdPick.png"></span>
+						<span th:if="${detail.quickYn}"><img src="/img/btn/quick.png"></span>
+						<span th:if="${detail.bestYn}"><img src="/img/btn/best.png"></span>
+						<span th:if="${detail.saleYn}"><img src="/img/btn/sale.png"></span>
+					</div>
+					<form action="/order/directOrderDetail" id="productDetailForm">
+						<input type='hidden' class="productNo" name="productNo" th:value="${detail.productNo}">
+						<input type='hidden' id="userId" th:value="${session.userId}">
+						<input type='hidden' id="category" name="category" th:value="${detail.category}">
+						<input type='hidden' id="mainImage" name="mainImage" th:value="${detail.mainImage}">
+						<input type='hidden' name="salePrice" th:value="${detail.salePrice}">
+						<div>
+							<h2 id="productName" th:text="${detail.productName}"></h2>
+						</div>
+						<hr class="infoHr">
+						<div>
+							<table class="product-detail-table">
+								<tr>
+									<th>소비자가</th>
+									<td><span th:text="'￦'+${detail.consumerPrice}+'원'" id="consumerPrice"
+											class="consumerPrice"></span></td>
+								</tr>
+								<tr>
+									<th>할인율</th>
+									<td><span th:text="${detail.discountRate}+'%'" id="discountRate"
+											class="discountRate"></span></td>
+								</tr>
+								<tr>
+									<th>판매가</th>
+									<td><span th:text="'￦'+${detail.salePrice}+'원'" id="salePrice"></span></td>
+								</tr>
+								<tr>
+									<th>상품명</th>
+									<td><span th:text="${detail.productName}"></span></td>
+								</tr>
+								<tr class="selectTr">
+									<th>색상</th>
+									<td>
+										<select id="select-color" class="selectBox" required>
+											<option value="*" selected="">- [필수] 옵션선택 -</option>
+											<option value="**" disabled="">-------------------</option>
+											<span th:each="color : ${color}">
+												<option th:value="${color.colorName}" th:text="${color.colorName}">
+												</option>
+											</span>
+										</select>
+									</td>
+								</tr>
+								<tr class="selectTr">
+									<th>사이즈</th>
+									<td>
+										<select id="select-size" class="selectBox" required>
+											<option value="*" selected="">- [필수] 옵션선택 -</option>
+											<option value="**" disabled="">-------------------</option>
+											<span th:each="size : ${size}">
+												<option th:value="${size.sizeName}" th:text="${size.sizeName}"></option>
+											</span>
+										</select>
+									</td>
+								</tr>
+							</table>
+							<div class="guideText">(최소주문수량 1개 이상)</div>
+							<!--색상, 사이즈 선택 후 상품정보 들어가는 영역-->
+							<div class="totalProduct">
+								<table class="total-table">
+								</table>
+							</div>
+							<div class="total-price-area">
+								<strong>총 상품금액 (수량) : </strong> ₩
+								<span id="totalPrice">0</span>원 (<span id="quantityText">0</span>개)
+							</div>
+							<div style="display: flex;">
+								<div class="cartBtn">
+									<span id="cartBtn">CART</span>
+								</div>
+								<div class='buyBtn'>
+									<span id="buyBtn">BUY IT NOW</span>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--상품 상세이미지-->
+		<div class="product-container centerAlign">
+			<div th:each="product : ${imgDetail}">
+				<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${detail.category},productNo=${product.productNo}, fileName=${product.fileName})}"
+					class="detailArea">
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

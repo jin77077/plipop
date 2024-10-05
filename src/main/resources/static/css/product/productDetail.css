@@ -1,0 +1,587 @@
+/* 320px 이상 CSS */
+@media only screen and (min-width:320px) {
+	.product-container {
+	    max-width: 1300px;
+	    margin: 0 auto;
+	    padding-bottom: 80px;
+	}
+	
+	.centerAlign {
+		text-align: center;
+	}
+	
+	.product-head {
+		display:block;
+		margin : 50px 0;
+	}
+	
+	.product-head-img {
+		width : 80%;
+		margin : 0 auto;	
+	}
+	.product-head-img img {
+		width : 100%;	
+	}
+	
+	.product-head-info {
+	    width: 80%;
+	    margin : 18px auto;
+	}
+	
+	.product-detail-table {
+	    font-size: 14px;
+	    width : 100%;
+	}
+	
+	.product-detail-table  .consumerPrice{
+	    text-decoration: line-through;
+	}
+	
+	.product-detail-table th {
+	    width: 22%;
+	    padding: 13px 0;
+	}
+	
+	.selectTr {
+		border-top : 1px solid #b4b4b4;
+		border-bottom: 1px solid #b4b4b4;
+	}
+	
+	/*안내문구*/
+	.guideText {
+	    font-size: 13px;
+	    margin: 10px 0;
+	    color: #4b4a4a;
+	}
+	
+	.total-table {
+		width: 100%;
+		font-size : 13px;
+	}
+	
+	.total-table tr:first-child {
+		border-top : 1.7px solid #5a5a5a;
+	}
+	
+	.total-table tr {
+		width: 100%;
+		border-top : 1px solid #d0d0d0;
+		height: 58px;
+	}
+	
+	.totalTd1 {
+		width: 45%;
+		font-size : 11px;
+	}
+	.totalTd2 {
+		width: 100%;
+		text-align: center;
+		display : flex;
+	}
+	.totalTd3 {
+		width: 23%;
+		text-align: right;
+		font-size : 12px;
+	}
+	
+	.quantityArea {
+		width: 80%;
+		margin-top : 15px;
+	}
+	
+	.delete {
+		width: 20%;
+		margin-top : 14px;
+	}
+	.quantity {
+	    display: inline-block;
+	    position: relative;
+	    width: 52%;
+	    height : 21px;
+	    vertical-align: top;
+	}
+	
+	.quantityBtn {
+		display : inline-flex;
+	}
+	.upBtn {
+	    position: relative;
+	    top: -4px;
+	    left: -5px;
+	    text-decoration: none;
+	}
+	
+	.downBtn {
+	    position: relative;
+	    top: -14px;
+	    left: 18px;
+	    text-decoration: none;
+	}
+	
+	.total-price-area {
+	    border-top: 1.7px solid #5a5a5a;
+	    font-size: 13px;
+	    padding: 13px 0;
+	}
+	
+	#totalPrice{
+		font-size:23px;
+	}
+	
+	/*할인율 영역*/
+	.discountRate {
+		font-weight: 700;
+		color : red;
+	}
+	/*saleIcon 영역*/
+	.saleIcon {
+	    width: 51px;
+	    background: red;
+	    text-align: center;
+	    color: #ffdcdc;
+	    font-weight: 700;
+	    border-radius: 6px;
+	    display : inline-block;
+	}
+	
+	/*상품설명 선 영역*/
+	.infoHr {
+		height: 4px !important;
+	    color: black;
+	    opacity: 1;
+	}
+	
+	/*색상,사이즈 선택 영역*/
+	.selectBox {
+		width:100%;
+	}
+	
+	.detailArea {
+		width : 80%;
+	}
+	
+	.cartBtn {
+	    width: 248px;
+	    height: 49px;
+	    border: 1px solid black;
+	    text-align: center;
+	    margin-right: 34px;
+	    display : table;
+	}
+	
+	.cartBtn a {
+	   display: table-cell;
+	    vertical-align: middle;
+	    text-decoration: none;
+	}
+	
+	.cartBtn span {
+	    font-weight: bold;
+	    color: #605f5f;
+	    display: table-cell;
+	    vertical-align: middle;
+	}
+	
+	.buyBtn {
+	    width: 428px;
+	    height: 49px;
+	    border: 1px solid black;
+	    text-align: center;
+	    display: table;
+	}
+	
+	.buyBtn span{
+	    display: table-cell;
+	    vertical-align: middle;
+	    font-weight: bold;
+	    color: #ffffff;
+	    background: #000000;
+	}
+}
+/* 768px 이상 CSS */ 
+@media only screen and (min-width:768px) {
+	.product-container {
+	    max-width: 1300px;
+	    margin: 0 auto;
+	    padding-bottom: 80px;
+	}
+	
+	.centerAlign {
+		text-align: center;
+	}
+	
+	.product-head {
+		display:flex;
+		margin : 50px 0;
+	}
+	
+	.product-head-img {
+		width : 40%;	
+	}
+	.product-head-img img {
+		width : 100%;	
+	}
+	
+	.product-head-info {
+	    padding:0 75px;
+	    width: 60%;
+	}
+	
+	.product-detail-table {
+	    font-size: 14px;
+	    width : 100%;
+	}
+	
+	.product-detail-table  .consumerPrice{
+	    text-decoration: line-through;
+	}
+	
+	.product-detail-table th {
+	    width: 15%;
+	    padding: 13px 0;
+	}
+	
+	.selectTr {
+		border-top : 1px solid #b4b4b4;
+		border-bottom: 1px solid #b4b4b4;
+	}
+	
+	/*안내문구*/
+	.guideText {
+	    font-size: 13px;
+	    margin: 10px 0;
+	    color: #4b4a4a;
+	}
+	
+	.total-table {
+		width: 100%;
+		font-size : 13px;
+	}
+	
+	.total-table tr:first-child {
+		border-top : 1.7px solid #5a5a5a;
+	}
+	
+	.total-table tr {
+		width: 100%;
+		border-top : 1px solid #d0d0d0;
+		height: 58px;
+	}
+	
+	.totalTd1 {
+		width: 60%;
+		font-size : 14px;
+	}
+	.totalTd2 {
+		width: 20%;
+		text-align: center;
+		display : table-cell;
+	}
+	.totalTd3 {
+		width: 20%;
+		text-align: right;
+	}
+	
+	.quantityArea {
+		width: 65px;
+	}
+	
+	.quantity {
+	    display: inline-block;
+	    position: relative;
+	    width: 44px;
+	    height : 21px;
+	    vertical-align: top;
+	}
+	
+	.quantityBtn {
+		display : inline-flex;
+	}
+	.upBtn {
+	    position: relative;
+	    top: -4px;
+	    left: -5px;
+	    text-decoration: none;
+	}
+	
+	.downBtn {
+	    position: relative;
+	    top: 6px;
+	    left: -31px;
+	    text-decoration: none;
+	}
+	
+	.total-price-area {
+	    border-top: 1.7px solid #5a5a5a;
+	    font-size: 13px;
+	    padding: 13px 0;
+	}
+	
+	#totalPrice{
+		font-size:23px;
+	}
+	
+	/*할인율 영역*/
+	.discountRate {
+		font-weight: 700;
+		color : red;
+	}
+	/*saleIcon 영역*/
+	.saleIcon {
+	    width: 51px;
+	    background: red;
+	    text-align: center;
+	    color: #ffdcdc;
+	    font-weight: 700;
+	    border-radius: 6px;
+	    display : inline-block;
+	}
+	
+	/*상품설명 선 영역*/
+	.infoHr {
+		height: 4px !important;
+	    color: black;
+	    opacity: 1;
+	}
+	
+	/*색상,사이즈 선택 영역*/
+	.selectBox {
+		width:100%;
+	}
+	
+	.detailArea {
+		width : 50%;
+	}
+	
+	.cartBtn {
+	    width: 248px;
+	    height: 49px;
+	    border: 1px solid black;
+	    text-align: center;
+	    margin-right: 34px;
+	    display : table;
+	}
+	
+	.cartBtn a {
+	   display: table-cell;
+	    vertical-align: middle;
+	    text-decoration: none;
+	}
+	
+	.cartBtn span {
+	    font-weight: bold;
+	    color: #605f5f;
+	    display: table-cell;
+	    vertical-align: middle;
+	}
+	
+	.buyBtn {
+	    width: 428px;
+	    height: 49px;
+	    border: 1px solid black;
+	    text-align: center;
+	    display: table;
+	}
+	
+	.buyBtn span{
+	    display: table-cell;
+	    vertical-align: middle;
+	    font-weight: bold;
+	    color: #ffffff;
+	    background: #000000;
+	}
+}
+/* 1921px 이상 CSS */
+@media only screen and (min-width:1921px) {
+	.product-container {
+	    max-width: 1300px;
+	    margin: 0 auto;
+	    padding-bottom: 80px;
+	}
+	
+	.centerAlign {
+		text-align: center;
+	}
+	
+	.product-head {
+		display:flex;
+		margin : 50px 0;
+	}
+	
+	.product-head-img {
+		width : 40%;	
+	}
+	.product-head-img img {
+		width : 100%;	
+	}
+	
+	.product-head-info {
+	    padding:0 75px;
+	    width: 60%;
+	}
+	
+	.product-detail-table {
+	    font-size: 14px;
+	    width : 100%;
+	}
+	
+	.product-detail-table  .consumerPrice{
+	    text-decoration: line-through;
+	}
+	
+	.product-detail-table th {
+	    width: 15%;
+	    padding: 13px 0;
+	}
+	
+	.selectTr {
+		border-top : 1px solid #b4b4b4;
+		border-bottom: 1px solid #b4b4b4;
+	}
+	
+	/*안내문구*/
+	.guideText {
+	    font-size: 13px;
+	    margin: 10px 0;
+	    color: #4b4a4a;
+	}
+	
+	.total-table {
+		width: 100%;
+		font-size : 13px;
+	}
+	
+	.total-table tr:first-child {
+		border-top : 1.7px solid #5a5a5a;
+	}
+	
+	.total-table tr {
+		width: 100%;
+		border-top : 1px solid #d0d0d0;
+		height: 58px;
+	}
+	
+	.totalTd1 {
+		width: 60%;
+		font-size : 14px;
+	}
+	.totalTd2 {
+		width: 20%;
+		text-align: center;
+		display : table-cell;
+	}
+	.totalTd3 {
+		width: 20%;
+		text-align: right;
+	}
+	
+	.quantityArea {
+		width: 65px;
+	}
+	
+	.quantity {
+	    display: inline-block;
+	    position: relative;
+	    width: 44px;
+	    height : 21px;
+	    vertical-align: top;
+	}
+	
+	.quantityBtn {
+		display : inline-flex;
+	}
+	.upBtn {
+	    position: relative;
+	    top: -4px;
+	    left: -5px;
+	    text-decoration: none;
+	}
+	
+	.downBtn {
+	    position: relative;
+	    top: 6px;
+	    left: -31px;
+	    text-decoration: none;
+	}
+	
+	.total-price-area {
+	    border-top: 1.7px solid #5a5a5a;
+	    font-size: 13px;
+	    padding: 13px 0;
+	}
+	
+	#totalPrice{
+		font-size:23px;
+	}
+	
+	/*할인율 영역*/
+	.discountRate {
+		font-weight: 700;
+		color : red;
+	}
+	/*saleIcon 영역*/
+	.saleIcon {
+	    width: 51px;
+	    background: red;
+	    text-align: center;
+	    color: #ffdcdc;
+	    font-weight: 700;
+	    border-radius: 6px;
+	    display : inline-block;
+	}
+	
+	/*상품설명 선 영역*/
+	.infoHr {
+		height: 4px !important;
+	    color: black;
+	    opacity: 1;
+	}
+	
+	/*색상,사이즈 선택 영역*/
+	.selectBox {
+		width:100%;
+	}
+	
+	.detailArea {
+		width : 50%;
+	}
+	
+	.cartBtn {
+	    width: 248px;
+	    height: 49px;
+	    border: 1px solid black;
+	    text-align: center;
+	    margin-right: 34px;
+	    display : table;
+	}
+	
+	.cartBtn a {
+	   display: table-cell;
+	    vertical-align: middle;
+	    text-decoration: none;
+	}
+	
+	.cartBtn span {
+	    font-weight: bold;
+	    color: #605f5f;
+	    display: table-cell;
+	    vertical-align: middle;
+	}
+	
+	.buyBtn {
+	    width: 428px;
+	    height: 49px;
+	    border: 1px solid black;
+	    text-align: center;
+	    display: table;
+	}
+	
+	.buyBtn span{
+	    display: table-cell;
+	    vertical-align: middle;
+	    font-weight: bold;
+	    color: #ffffff;
+	    background: #000000;
+	}
+}
+

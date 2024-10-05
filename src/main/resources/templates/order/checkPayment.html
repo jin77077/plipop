@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<script th:src="@{/js/payment.js}"></script>
+	<link th:href="@{/css/product/order.css}" rel="stylesheet">
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<!--결제확인 화면-->
+		<div class="container">
+			<div class="order-content">
+				<div class="order-title">
+					결제 확인<br>
+					<span class="order-sub-title">결제하신 상품의 정보입니다.</span>
+				</div>
+				<div class="order-body">
+					<table class="order-table">
+						<tr>
+							<td style="width:12%;">주문번호</td>
+							<td style="width:12%;">거래일시</td>
+							<td style="width:47%;">상품정보</td>
+							<td style="width:7%;">배송비</td>
+							<td style="width:7%;">총 결제금액</td>
+							<td style="width:7%;">결제전표</td>
+						</tr>
+						<tr style="height: 60px;">
+							<td th:text="${payment.merchant_uid}"></td>
+							<td th:text="${payment.paid_at}"></td>
+							<td><b th:text="${payment.name}"></b><br>
+							<td th:if="${payment.delivery_price == 1}">￦2,500원</td>
+							<td th:unless="${payment.delivery_price == 1}">무료</td>
+							</th:block>
+							<td id="payment-amount" th:text="${payment.amount}"></td>
+							<td>
+								<span th:attr="onclick=|paymentOpen('${payment.receipt_url}')|" class="paymentSpan">전표확인</a>
+							</td>
+						</tr>
+					</table>
+					<table class="order-table">
+						<tr>
+							<td style="width:7%;">이미지</td>
+							<td style="width:65%;">상품명</td>
+							<td style="width:7%;">사이즈</td>
+							<td style="width:7%;">색상</td>
+							<td style="width:7%;">수량</td>
+							<td style="width:7%;">합계</td>
+						</tr>
+						<tr th:each="product, index: ${productList}" class="orderList-tr">
+							<td>
+								<a th:href="@{/product/detail/{productNo}(productNo=${product.productNo})}">
+									<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}"	class="mainImage">
+								</a>
+							</td>
+							<td style="text-align: left; padding-left:15px;">
+								<b th:text="${product.productName}" class="productName"></b><br>
+							</td>
+							<td>
+								<span class="size" th:text="${product.size}"></span>
+							</td>
+							<td>
+								<span class="color" th:text="${product.color}"></span>
+							</td>
+							<td>
+								<span class="quantity" th:text="${product.quantity}"></span>
+							</td>
+							<td>
+								<b><span class="totalPrice" th:text="${product.totalPrice}"></span></b>
+							</td>
+						</tr>
+					</table>
+					<div class="btnDivArea">
+						<div class="btnDiv">
+							<span><a th:href="@{/order/orderList(userId=${session.userId})}">주문내역</a></span>
+						</div>
+						<div class="btnDiv">
+							<span><a href="/">메인화면</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

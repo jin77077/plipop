@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="com.yg.portfolio.repository.OrderRepository">
+
+	<select id="orderDetail" resultType="OrderForm">
+		SELECT cartNo
+			 , (SELECT productName FROM product WHERE productNo = A.productNo) as productName
+			 , productNo
+			 , size
+			 , color
+			 , quantity
+			 , userId
+			 , (SELECT salePrice 
+			 	  FROM product 
+			 	 WHERE productNo = A.productNo) as salePrice 
+			 , (SELECT salePrice * A.quantity 
+			 	  FROM product 
+			 	 WHERE productNo = A.productNo) as totalPrice 
+			 , (SELECT mainImage 
+			 	  FROM product 
+			 	 WHERE productNo = A.productNo) as mainImage 
+			 , (SELECT category 
+			 	  FROM product 
+			 	 WHERE productNo = A.productNo) as category 
+		  FROM cart A
+		 WHERE cartNo = #{cartNo}
+	</select>
+	
+	<insert id="orderSave">
+		INSERT INTO `order` (
+			   userId
+			 , name
+			 , amount
+			 , delivery_price
+			 , delivery_name
+			 , delivery_tel
+			 , delivery_postcode
+			 , delivery_addr
+			 , delivery_message
+			 , imp_uid
+			 , merchant_uid
+			 , paid_at
+			 , receipt_url )
+		VALUES (
+			   #{userId}
+			 , #{name}
+			 , #{amount}
+			 , #{delivery_price}
+			 , #{delivery_name}
+			 , #{delivery_tel}
+			 , #{delivery_postcode}
+			 , #{delivery_addr}
+			 , #{delivery_message}
+			 , #{imp_uid}
+			 , #{merchant_uid}
+			 , #{paid_at}
+			 , #{receipt_url} )
+	</insert>
+	
+	<insert id="orderDetailSave">
+		INSERT INTO orderDetail (
+			   merchant_uid
+			 , productNo
+			 , quantity
+			 , color
+			 , size
+			 , totalPrice )
+		VALUES (
+			   #{merchant_uid}
+			 , #{productNo}
+			 , #{quantity}
+			 , #{color}
+			 , #{size}
+			 , #{totalPrice} )
+	</insert>
+	
+	<select id="checkPayment" resultType="KakaoPay">
+		SELECT * 
+		  FROM `order`
+		 WHERE merchant_uid = #{merchant_uid}
+	</select>
+	
+	<select id="productDetails" resultType="OrderDetail">
+		SELECT merchant_uid
+			 , productNo
+			 , quantity
+			 , color
+			 , size
+			 , totalPrice
+			 , (SELECT salePrice
+			 	  FROM product
+			 	 WHERE productNo = A.productNo) as salePrice
+			 , (SELECT category
+			 	  FROM product
+			 	 WHERE productNo = A.productNo) as category
+			 , (SELECT mainImage
+			 	  FROM product
+			 	 WHERE productNo = A.productNo) as mainImage
+			 , (SELECT productName
+			 	  FROM product
+			 	 WHERE productNo = A.productNo) as productName
+		  FROM orderDetail A
+		 WHERE merchant_uid = #{merchant_uid}
+	</select>
+	
+	<select id="orderList" resultType="KakaoPay">
+		SELECT * 
+		  FROM `order`
+		 WHERE userId = #{userId}
+		 ORDER BY merchant_uid DESC
+	</select>
+	
+</mapper>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<script th:src="@{/js/qna.js}"></script>
+	<link th:href="@{/css/community/qna.css}" rel="stylesheet">
+	<!--TinyMCE-->
+	<script src="https://cdn.tiny.cloud/1/pyf8q7628ksvj3qubyx8rsw0isih2qaef5jsvej0txldx5ji/tinymce/5/tinymce.min.js"
+		referrerpolicy="origin"></script>
+	<!--TinyMCE 설정-->
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons fullscreen table link',
+			toolbar_mode: 'floating',
+			toolbar: 'emoticons fullscreen table link numlist bullist image imagetools charmap',
+			elementpath: false,
+			height: 420,
+			width: 1294
+		});
+	</script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<!--QNA 작성화면-->
+		<section>
+			<div class="container">
+				<div class="qna-content">
+					<div class="qna-title">
+						<th:block th:if="${detail==null}">
+						QNA WRITE<br>
+							<span class="qna-sub-title">QNA 작성</span>
+						</th:block>
+						<th:block th:unless="${detail==null}">
+						QNA UPDATE<br>
+							<span class="qna-sub-title">QNA 수정</span>
+						</th:block>
+					</div>
+					<div class="qna-body">
+						<th:block th:if="${detail==null}">
+							<form method="post" action="/community/writeQna">
+								<table class="qna-write-table">
+									<tr>
+										<th>제목</th>
+										<td><input type="text" class="qna-input" name="title"></td>
+										<td><input type="hidden" name="userId" th:value="${session.userId}"></td>
+									</tr>
+									<tr>
+										<th>작성자</th>
+										<td><input type="text" class="qna-input" name="userName" th:value="${session.userName}" readonly></td>
+									</tr>
+									<tr>
+										<th>비밀글 설정</th>
+										<td>
+											<div class="radio-input">
+												<input type="radio" class="radioInput" id="publicBtn" name="chkSecret" value="public">공개글
+												<input type="radio" class="radioInput" id="secretBtn" name="chkSecret" value="secret" checked>비밀글
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>비밀번호</th>
+										<td><input type="password" id="password" name="password" class="qna-input" maxlength="4"></td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<textarea name="content"></textarea>
+										</td>
+									</tr>
+								</table>
+								<div class="qna-bottom">
+									<a onClick="qnaSubmit()">글작성</a>
+									<a th:href="@{/community/qna}" class="writeBtn">글목록</a>
+								</div>
+							</form>
+						</th:block>
+						<th:block th:unless="${detail==null}">
+							<form method="post" action="/community/updateQna">
+								<table class="qna-write-table">
+									<tr>
+										<th>제목</th>
+										<td><input type="text" class="qna-input" name="title"	th:value="${detail.title}"></td>
+										<td><input type="hidden" name="boardNum" th:value="${detail.boardNum}"></td>
+									</tr>
+									<tr>
+										<th>작성자</th>
+										<td><input type="text" class="qna-input" name="userName" th:value="${detail.userName}" readonly></td>
+										<td><input type="hidden" name="userId" th:value="${session.userId}"></td>
+									</tr>
+									<tr>
+										<th>비밀글 설정</th>
+										<td>
+											<div class="radio-input">
+												<input type="radio" class="radioInput" id="publicBtn" name="chkSecret" value="public">공개글
+												<input type="radio" class="radioInput" id="secretBtn" name="chkSecret" value="secret" checked>비밀글
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>비밀번호</th>
+										<td><input type="password" id="password" name="password" class="qna-input" maxlength="4" th:value="${detail.password}"></td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<textarea name="content" th:utext="${detail.content}"></textarea>
+										</td>
+									</tr>
+								</table>
+								<div class="qna-bottom">
+									<a onClick="qnaSubmit()">글수정</a>
+									<a th:href="@{/community/qna}" class="writeBtn">글목록</a>
+								</div>
+							</form>
+						</th:block>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

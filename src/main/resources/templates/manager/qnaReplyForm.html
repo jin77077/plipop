@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<script th:src="@{/js/qna.js}"></script>
+	<link th:href="@{/css/community/qnaReply.css}" rel="stylesheet">
+	<!--TinyMCE-->
+	<script src="https://cdn.tiny.cloud/1/pyf8q7628ksvj3qubyx8rsw0isih2qaef5jsvej0txldx5ji/tinymce/5/tinymce.min.js"
+		referrerpolicy="origin"></script>
+	<!--TinyMCE 설정-->
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons fullscreen table link',
+			toolbar_mode: 'floating',
+			toolbar: 'emoticons fullscreen table link numlist bullist image imagetools charmap',
+			elementpath: false,
+			height: 300,
+			width: 1294
+		});
+	</script>
+</head>
+<body>
+	<div layout:fragment="content">
+		<!--QNA 관리자 답변작성 화면-->
+		<section>
+			<div class="container">
+				<div class="qna-content">
+					<div class="qna-title">
+						QNA
+					</div>
+					<div class="qna-body">
+						<table class="qna-table">
+							<tr>
+								<th class="table-title">제목</th>
+								<td th:text="${detail.title}"></td>
+							</tr>
+							<tr>
+								<th class="table-title">질문자</th>
+								<td th:text="${detail.userName}"></td>
+							</tr>
+							<tr>
+								<th class="table-title">작성일</th>
+								<td th:text="${#dates.format(detail.writeDate, 'yyyy-MM-dd')}"></td>
+							</tr>
+							<tr>
+								<th class="table-title">조회수</th>
+								<td th:text="${detail.count}"></td>
+							</tr>
+							<tr>
+								<th class="table-title">질문내용</th>
+								<td colspan="2" th:utext="${detail.content}" class="detailContent"></td>
+							</tr>
+						</table>
+						<div class="qna-title">
+							QNA REPLY
+						</div>
+						<form method="post" action="/manager/writeReplyQna">
+							<input type="hidden" name="password" th:value="${detail.password}">
+							<input type="hidden" name="boardNum" th:value="${detail.boardNum}">
+							<input type="hidden" name="groupNo" th:value="${detail.groupNo}">
+							<input type="hidden" name="userId" th:value="${session.userId}">
+							<input type="hidden" name="userName" th:value="${session.userName}">
+							<table class="qna-table">
+								<tr>
+									<th class="table-title">답변자</th>
+									<td th:text="${session.userName}"></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding-left : 0px;">
+										<textarea name="content"></textarea>
+									</td>
+								</tr>
+							</table>
+							<div class="qna-bottom">
+								<button>글작성</button>
+								<a th:href="@{/community/qna}" class="writeBtn">글목록</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

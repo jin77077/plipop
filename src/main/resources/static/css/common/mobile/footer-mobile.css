@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+/* 480px 이하 CSS */ 
+@media (max-width:767px) {
+	footer {
+		min-height: 180px;
+		padding : 30px 0;
+	}
+	
+	.footer-container {
+		display : flex;
+		margin : 0 auto;
+		max-width: 1500px;	
+		color: white;
+	}
+	
+	.footer-logo {
+	    width: 140px;
+	    display: none;
+	}
+	
+	.footer-logo > img {
+	    width: 100px;
+	}
+	
+	.footer-description {
+	    width : 730px;
+	    padding-top : 6px;
+	}
+	.footer-description > p {
+	    text-align: left;
+	    margin-bottom: 11px;
+	    font-size: 18px;
+	}
+	
+	.footer-account {
+		font-size : 12px;
+		margin-left : 30px;
+		width : 230px;
+		display: none;
+	}
+	
+	.footer-account > p {
+	    font-weight: bold;
+	    font-size: 14px;
+	}
+	
+	.footer-account > div {
+		margin : 10px 0;
+	}
+	
+	.footer-customer {
+		font-size : 20px;
+		width: 402px;
+		letter-spacing: 1px;
+	}
+	
+	.footer-customer > div{
+		display : flex;
+	}
+	
+	.footer-customer > div > i{
+		margin-right: 21px;
+		margin-bottom: 12px;
+	}
+	
+	.footer-customer > div > p{
+		font-size : 28px;
+		position : relative;
+		top : 0px;
+		margin-bottom : 26px;
+	}
+	
+	.footer-customer > p {
+	    font-weight: bold;
+	    font-size: 20px;
+	}
+	
+	.customer-content {
+		font-size: 18px;
+	}
+	
+	.footer-normal {
+		display:none;
+	}
+	
+	.footer-mobile {
+		display:block;
+	}
+}

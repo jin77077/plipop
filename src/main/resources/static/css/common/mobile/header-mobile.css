@@ -1,0 +1,267 @@
+@charset "UTF-8";
+
+/* 480px 이하 CSS */ 
+@media (max-width:767px) {
+	.header_top {
+	    border-bottom: 1px solid #e9e9e9;
+	    background: #fff;
+	    z-index: 12;
+	    position: fixed;
+	    height:71px;
+	    width: 100%;
+	}
+	
+	/*index Log 배너*/
+	.index-header {
+	    width: 100%;
+	    background: #121212;
+	    height: 132px;
+	    position : relative;
+	    top : 71px;
+	    text-align: center;
+	}
+	
+	/*검색바, 배너로고, 쇼핑몰설명 위치 고정*/
+	.searchBar, .shopLogo, .shopDescription {
+		position:absolute;
+	}
+	
+	/*배너 검색창*/
+	.searchBar {
+	    top: 124px;
+	    right: 12px;
+	    z-index: 1;
+	    background: white;
+	    padding: 0 24px;
+	    margin: 0 12px;
+	    border-radius: 17px;
+	}
+	
+	.searchBar > form > input {
+	    background: none;
+	    border: 0px;
+	    height: 32px;
+	    font-size: 14px;
+	    padding: 0 0 2px 0;
+	}
+	
+	.searchBar > form > input:focus {
+		outline:none;
+	}
+	
+	.searchBar > form > button {
+		border : 0px;
+		background: none;
+	}
+	
+	/*배너 쇼핑몰 로고*/
+	.shopLogo {
+	    top: 96px;
+	    left: 203px;
+	    z-index: 1;
+	    width: 80px;
+	    display: none;
+	}
+	/*배너 쇼핑몰 설명*/
+	.shopDescription {
+	    top: 116px;
+	    left: 289px;
+	    z-index: 1;
+	    font-size: 10px;
+	    color: white;
+	    opacity: 0.4;
+	    display: none;
+	}
+	
+	/*배너 샵이름*/
+	.shop-name-area {
+		height: 100%;
+		text-align: center;
+	}
+	
+	.shop-name{
+	    color: white;
+	    font-size: 57px;
+	    font-weight: 700;
+	    padding-top : 19px;
+	}
+	
+	
+	/*카테고리바*/
+	.category-bar {
+	    position: relative;
+	    top: 71px;
+	    width: 100%;
+	    height: 71px;
+	}
+	
+	.fiexd {
+		position : fixed;
+		top : 56px;
+		left : 0px;
+		background-color: white;
+		z-index : 10;
+		border-bottom: 1px solid #e9e9e9;
+	}
+	
+	.category-bar > ul {
+		list-style: none;
+		height: 100%;
+		text-align: center;
+	}
+	
+	.category-bar > ul > li {
+		display: inline-block;
+	    position: relative;
+	}
+	
+	.category-bar > ul > li > div > a {
+		display: block;
+	    line-height: 36px;
+	    font-size: 15px;
+	    font-weight: 600;
+	    color: #919191;
+	    transition: color 0.5s;
+	    text-decoration: none;
+	    width: 115px;
+	    text-align: center;
+	    letter-spacing: 1px;
+	}
+	.inwrap {
+	    position: relative;
+	    max-width: 1320px;
+	    margin: 0 auto;
+	    padding: 0 30px;
+	    box-sizing: border-box;
+	}
+	
+	.navlog {
+		float: left; 
+		list-style:none;
+	}
+	.navlog img{
+		width:41%;
+		position:relative;
+		top : 11px;
+		left : -41px;
+	}
+	.guide_nav {
+	    float: right;
+	    margin-top: 12px;
+	}
+	
+	.guide_nav > li {
+		    display: inline-block;
+	    position: relative;
+	}
+	
+	.guide_nav > li > a{
+		display: block;
+	    height: 50px;
+	    line-height: 50px;
+	    font-size: 18px;
+	    color: #999;
+	    padding: 0 10px;
+	    transition: color 0.5s;
+	    text-decoration: none;
+	}
+	
+	.header_top ul>li>ul {
+		    display: none;
+	    opacity: 0;
+	    position: absolute;
+	    top: 40px;
+	    left: 50%;
+	    transform: translate(-50%,0);
+	    width: 100%;
+	    min-width: 100px;
+	    border: 1px solid #e9e9e9;
+	    background: #fff;
+	    padding: 15px 10px;
+	    box-sizing: border-box;
+	    z-index: 12;
+	    transition: color 0.5s;
+	}
+	
+	.guide_nav > li > a:after {
+	    content: "";
+	    display: block;
+	    width: 1px;
+	    height: 10px;
+	    position: absolute;
+	    left: -1px;
+	    top: 50%;
+	    margin-top: -5px;
+	    background: #e9e9e9;
+	}
+	
+	
+	.logo {
+		width:448px;
+	    position: relative;
+	    top: 11px;
+	    left: 39%;
+	}
+	
+	
+	#drop-content::before {
+		content:"";
+		position:absolute;
+		bottom : 100%;
+		left : 50%;
+		transform : translate(-50%,0);
+		display : inline-block;
+		width : 0;
+		height: 0;
+		border-style: solid;
+		border-width : 6px;
+		border-color : transparent transparent #c5c1c1 transparent;
+	}
+	
+	#drop-content::after {
+		content:"";
+		position:absolute;
+		bottom : 99%;
+		left : 50%;
+		transform : translate(-50%,0);
+		display : inline-block;
+		width : 0;
+		height: 0;
+		border-style: solid;
+		border-width : 4.4px;
+		border-color : transparent transparent white transparent;
+	}
+	
+	#drop-content {
+		display : none;
+	    background: white;
+	    border: 1px solid gray;
+	    padding: 4px;
+	    text-align: center;
+	    position: absolute;
+	    top: 44.6px;
+	    left: -3px;
+	    width: 105px;
+	    height: 80px;
+	    border-radius: 4px;
+	}
+	
+	.dropBox {
+	    margin: 3px 0;
+	    font-size: 20px;
+	    color: #999;
+	}
+	.dropBox a{
+	    color: #999;
+	    text-decoration: none;
+	}
+	
+	.slick-list {
+		height: 357px;
+	}
+	
+	.slick-list img{
+		height: 357px;
+	}
+	
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<script th:src="@{/js/qna.js}"></script>
+	<link th:href="@{/css/community/qnaDetail.css}" rel="stylesheet">
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<!--QNA 상세화면-->
+		<div class="container">
+			<div class="qna-content">
+				<div class="qna-title">
+					Q & A<br>
+					<span class="qna-sub-title">상품 Q&A 입니다.</span>
+				</div>
+				<div class="qna-body">
+					<input type="hidden" id="boardNum" th:value="${detail.boardNum}">
+					<table class="qna-detail-table">
+						<tr>
+							<th>제목</th>
+							<td th:text="${detail.title}"></td>
+						</tr>
+						<tr>
+							<th>작성자</th>
+							<td th:text="${detail.userName}"></td>
+						</tr>
+						<tr>
+							<th>작성일</th>
+							<td th:text="${#dates.format(detail.writeDate, 'yyyy-MM-dd')}"></td>
+						</tr>
+						<tr>
+							<th>조회수</th>
+							<td th:text="${detail.count}"></td>
+						</tr>
+						<tr>
+							<td colspan="2" th:utext="${detail.content}" class="detailContent"></td>
+						</tr>
+					</table>
+					<div class="qna-bottom">
+						<a th:href="@{/community/qna}" class="writeBtn">글목록</a>
+						<th:block th:if="${session.userRole == 'ROLE_MANAGER' or session.userRole == 'ROLE_ADMIN'}">
+							<a th:href="@{/community/qnaForm(boardNum = ${detail.boardNum})}" style="float: right;">글수정</a>
+							<a onClick="deleteQna()" style="float: right;">글삭제</a>
+							<a th:href="@{/manager/qnaReplyForm(boardNum = ${detail.boardNum})}" style="float: right;">답변작성</a>
+						</th:block>
+						<th:block th:if="${session.userRole == 'ROLE_USER' and session.userId == detail.userId}">
+							<a th:href="@{/community/qnaForm(boardNum = ${detail.boardNum})}" style="float: right;">글수정</a>
+							<a onClick="deleteQna()" style="float: right;">글삭제</a>
+						</th:block>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

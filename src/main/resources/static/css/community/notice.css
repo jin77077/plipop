@@ -1,0 +1,461 @@
+/* 320px 이상 CSS */
+@media only screen and (min-width:320px) {
+	.notice-title {
+	    text-align: center;
+	    font-size: 14px;
+	    font-weight: 700;
+	    padding : 14px 0;
+	}
+	.notice-sub-title{
+	    font-size: 12px;
+	    font-weight: 100;
+	}
+	
+	.notice-content {
+		padding-bottom : 29px;
+	}
+	
+	/* 공지사항 */
+	.notice-paging {
+		text-align: center;
+		padding : 15px 0 0 0;
+	}
+	
+	.notice-paging a {
+	    display: inline-block;
+	    text-decoration: none;
+	    font-weight: 200;
+	    font-size: 14px;
+	    color: black;
+	}
+	
+	.notice-paging a:hover{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.notice-paging .current{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.notice-paging span {
+	    display: block;
+	    width: 37px;
+	    height: 35px;
+	    text-align: center;
+	}
+	.notice-table {
+	    border-top: 2px solid black;
+	    border-bottom: 2px solid black;
+	    width: 100%;
+	    font-size: 10px;
+	    text-align: center;
+	}
+	
+	.notice-table a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.notice-table tr {
+		border-top: 1px solid #dfdfdf;
+	    border-bottom: 1px solid #dfdfdf;
+	    height: 32px;
+	}
+	
+	.notice-table th {
+		background-color: #eceaea;
+		padding-left : 12px;
+	}
+	
+	.notice-bottom  button {
+	    color: #414141;
+	    border: 1px solid #b6b6b6;
+	    width: 63px;
+	    height: 30px;
+	    text-align: center;
+	    padding-top : 3px;
+	    border-radius: 3px;
+	    background: #e2e2e2;
+	    font-size : 12px;
+	}
+	
+	.notice-bottom a {
+	    color: #414141;
+	    border: 1px solid #b6b6b6;
+	    width: 64px;
+	    height: 30px;
+	    text-align: center;
+	    margin : 0 2px;
+	    border-radius: 3px;
+	    background: #e2e2e2;
+	    text-decoration: none;
+	    display: block;
+	    font-size : 12px;
+	    padding-top: 5px;
+	}
+		
+	/* 공지사항 작성폼 */
+	.notice-write-table {
+	    border-top: 2px solid black;
+	    border-bottom: 2px solid black;
+	    width: 100%;
+	    font-size: 14px;
+	}
+	
+	.notice-write-table tr {
+		border-top: 1px solid #dfdfdf;
+	    border-bottom: 1px solid #dfdfdf;
+	    height: 49px;
+	}
+	.notice-write-table th {
+		background-color: #eceaea;
+		padding-left : 12px;
+		width : 129px;
+	}
+	
+	.notice-table td {
+		padding-left : 12px;
+	}
+	
+	.write-input {
+		margin-left : 12px;
+		border: 1px solid #d5d5d5;
+		padding-left: 7px;
+		width: 300px;
+	}
+	
+	.notice-bottom {
+		display: flex;
+		margin-top : 4px;
+	}
+	
+	.buttonBox {
+		position: relative;
+		right : -2px;
+		display: flex;
+	}
+	
+	.searchKind {
+		width : 57px;
+		height: 30px;
+		font-size : 14px;
+	}
+	
+	.searchInput {
+		width : 96px;
+		height: 30px;
+	}
+	
+	.tox-tinymce {
+		width: 366px !important;
+    	height: 260px !important;
+	}
+
+}
+/* 768px 이상 CSS */ 
+@media only screen and (min-width:768px) {
+	.notice-title {
+	    text-align: center;
+	    font-size: 20px;
+	    font-weight: 700;
+	    padding : 23px 0;
+	}
+	.notice-sub-title{
+	    font-size: 15px;
+	    font-weight: 100;
+	}
+	
+	.notice-content {
+		padding:50px 0;
+	}
+	
+	/* 공지사항 */
+	.notice-paging {
+		text-align: center;
+		padding : 15px 0 0 0;
+	}
+	
+	.notice-paging a {
+	    display: inline-block;
+	    text-decoration: none;
+	    font-weight: 200;
+	    font-size: 18px;
+	    color: black;
+	}
+	
+	.notice-paging a:hover{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.notice-paging .current{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.notice-paging span {
+	    display: block;
+	    width: 37px;
+	    height: 35px;
+	    text-align: center;
+	}
+	.notice-table {
+	    border-top: 2px solid black;
+	    border-bottom: 2px solid black;
+	    width: 100%;
+	    font-size: 14px;
+	    text-align: center;
+	}
+	
+	.notice-table a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.notice-table tr {
+		border-top: 1px solid #dfdfdf;
+	    border-bottom: 1px solid #dfdfdf;
+	    height: 49px;
+	}
+	
+	.notice-table th {
+		background-color: #eceaea;
+		padding-left : 12px;
+	}
+	
+	.notice-bottom  button {
+	    color: #414141;
+	    border: 1px solid #b6b6b6;
+	    width: 100px;
+	    height: 30px;
+	    text-align: center;
+	    margin: 7px;
+	    border-radius: 3px;
+	    background: #e2e2e2;
+	    font-size : 16px;
+	}
+	
+	.notice-bottom a {
+	    color: #414141;
+	    border: 1px solid #b6b6b6;
+	    width: 100px;
+	    height: 30px;
+	    text-align: center;
+	    margin: 7px;
+	    border-radius: 3px;
+	    background: #e2e2e2;
+	    text-decoration: none;
+	    display: block;
+	    padding-top: 2px;
+	    font-size : 16px;
+	}
+	
+	
+	/* 공지사항 작성폼 */
+	.notice-write-table {
+	    border-top: 2px solid black;
+	    border-bottom: 2px solid black;
+	    width: 100%;
+	    font-size: 14px;
+	}
+	
+	.notice-write-table tr {
+		border-top: 1px solid #dfdfdf;
+	    border-bottom: 1px solid #dfdfdf;
+	    height: 49px;
+	}
+	.notice-write-table th {
+		background-color: #eceaea;
+		padding-left : 12px;
+		width : 129px;
+	}
+	
+	.notice-table td {
+		padding-left : 12px;
+	}
+	
+	.write-input {
+		margin-left : 12px;
+		border: 1px solid #d5d5d5;
+		padding-left: 7px;
+		width: 300px;
+	}
+	
+	.notice-bottom {
+		display: flex;
+	}
+	
+	.buttonBox {
+		position: relative;
+		right : -574px;
+		display: flex;
+	}
+	
+	.searchKind {
+		width : 76px;
+		height: 30px;
+	}
+	
+	.tox-tinymce {
+		width: 1294px !important;
+    	height: 420px !important;
+	}
+	
+	.searchInput {
+		width : 300px;
+		height: 30px;
+	}
+
+}
+/* 1921px 이상 CSS */
+@media only screen and (min-width:1921px) {
+	.notice-title {
+	    text-align: center;
+	    font-size: 20px;
+	    font-weight: 700;
+	    padding : 23px 0;
+	}
+	.notice-sub-title{
+	    font-size: 15px;
+	    font-weight: 100;
+	}
+	
+	.notice-content {
+		padding:50px 0;
+	}
+	
+	/* 공지사항 */
+	.notice-paging {
+		text-align: center;
+		padding : 15px 0 0 0;
+	}
+	
+	.notice-paging a {
+	    display: inline-block;
+	    text-decoration: none;
+	    font-weight: 200;
+	    font-size: 18px;
+	    color: black;
+	}
+	
+	.notice-paging a:hover{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.notice-paging .current{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.notice-paging span {
+	    display: block;
+	    width: 37px;
+	    height: 35px;
+	    text-align: center;
+	}
+	.notice-table {
+	    border-top: 2px solid black;
+	    border-bottom: 2px solid black;
+	    width: 100%;
+	    font-size: 14px;
+	    text-align: center;
+	}
+	
+	.notice-table a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.notice-table tr {
+		border-top: 1px solid #dfdfdf;
+	    border-bottom: 1px solid #dfdfdf;
+	    height: 49px;
+	}
+	
+	.notice-table th {
+		background-color: #eceaea;
+		padding-left : 12px;
+	}
+	
+	.notice-bottom  button {
+	    color: #414141;
+	    border: 1px solid #b6b6b6;
+	    width: 100px;
+	    height: 30px;
+	    text-align: center;
+	    margin: 7px;
+	    border-radius: 3px;
+	    background: #e2e2e2;
+	    font-size : 16px;
+	}
+	
+	.notice-bottom a {
+	    color: #414141;
+	    border: 1px solid #b6b6b6;
+	    width: 100px;
+	    height: 30px;
+	    text-align: center;
+	    margin: 7px;
+	    border-radius: 3px;
+	    background: #e2e2e2;
+	    text-decoration: none;
+	    display: block;
+	    padding-top: 2px;
+	    font-size : 16px;
+	}
+	
+	
+	/* 공지사항 작성폼 */
+	.notice-write-table {
+	    border-top: 2px solid black;
+	    border-bottom: 2px solid black;
+	    width: 100%;
+	    font-size: 14px;
+	}
+	
+	.notice-write-table tr {
+		border-top: 1px solid #dfdfdf;
+	    border-bottom: 1px solid #dfdfdf;
+	    height: 49px;
+	}
+	.notice-write-table th {
+		background-color: #eceaea;
+		padding-left : 12px;
+		width : 129px;
+	}
+	
+	.notice-table td {
+		padding-left : 12px;
+	}
+	
+	.write-input {
+		margin-left : 12px;
+		border: 1px solid #d5d5d5;
+		padding-left: 7px;
+		width: 300px;
+	}
+	
+	.notice-bottom {
+		display: flex;
+	}
+	
+	.buttonBox {
+		position: relative;
+		right : -574px;
+		display: flex;
+	}
+	
+	.searchKind {
+		width : 76px;
+		height: 30px;
+	}
+	
+	.searchInput {
+		width : 300px;
+		height: 30px;
+	}
+}
+

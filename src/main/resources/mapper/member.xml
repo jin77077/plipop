@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yg.portfolio.repository.MemberRepository">
+
+	<select id="memberInfo" resultType="User">
+		SELECT * 
+		  FROM user 
+		 WHERE userId = #{userId}
+	</select>
+	
+	<update id="memberModify">
+		UPDATE user
+		   SET userName			= #{userName} 
+		     , password			= #{password} 
+		     , email			= #{email}
+		     , emailProvider	= #{emailProvider}
+		     , phone			= #{phone}
+		     , gender			= #{gender}
+		     , emailReceiveYn	= #{emailReceiveYn}
+		     , smsReceiveYn		= #{smsReceiveYn}
+		     , zipCode			= #{zipCode}
+		     , address			= #{address}
+		     , detailAddress	= #{detailAddress}
+		     , birthYear		= #{birthYear}
+		     , birthMonth		= #{birthMonth}
+		     , birthDay			= #{birthDay}
+		WHERE userId			= #{userId}
+	</update>
+	
+	<delete id="memberWithdrawal">
+		DELETE 
+		  FROM user
+		 WHERE userId = #{userId}
+	</delete>
+</mapper>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yg.portfolio.repository.CommunityRepository">
+
+	<select id="notice" resultType="Notice">
+		SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.boardNum
+		  			 , A.writeDate
+		  			 , A.userId
+		  			 , A.userName
+		  			 , A.title
+		  			 , A.content
+		  			 , A.count
+				  FROM (SELECT boardNum
+				  			 , writeDate
+				  			 , userId
+				  			 , userName
+				  			 , title
+				  			 , content
+				  			 , count
+						  FROM notice, (SELECT @ROWNUM:=0) AS R
+						 ORDER BY boardNum DESC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+
+	<select id="noticeCnt" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM notice
+	</select>
+
+	<select id="noticeSearch" resultType="Notice">
+		SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.boardNum
+		  			 , A.writeDate
+		  			 , A.userId
+		  			 , A.userName
+		  			 , A.title
+		  			 , A.content
+		  			 , A.count
+				  FROM (SELECT boardNum
+				  			 , writeDate
+				  			 , userId
+				  			 , userName
+				  			 , title
+				  			 , content
+				  			 , count
+						  FROM notice, (SELECT @ROWNUM:=0) AS R
+						<if test = "searchKind == 'title'">
+						 WHERE title LIKE CONCAT('%',#{search},'%')		
+						</if>
+						<if test = "searchKind == 'userName'">
+						 WHERE userName LIKE CONCAT('%',#{search},'%')
+						</if>
+						 ORDER BY boardNum DESC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+	
+	<select id="noticeSearchCnt" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM notice
+	     <if test = "searchKind == 'title'">
+		 WHERE title LIKE CONCAT('%',#{search},'%')		
+		</if>
+		<if test = "searchKind == 'userName'">
+		 WHERE userName LIKE CONCAT('%',#{search},'%')
+		</if>
+	</select>
+	
+	<select id="noticeDetail" resultType="Notice">
+		SELECT *
+		  FROM notice
+		 WHERE boardNum = #{boardNum}
+	</select>
+	
+	
+	<select id="qna" resultType="Qna">
+		SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.boardNum
+		  			 , A.writeDate
+		  			 , A.userId
+		  			 , A.userName
+		  			 , A.title
+		  			 , A.content
+		  			 , A.count
+		  			 , A.password
+		  			 , A.chkSecret
+		  			 , A.groupNo
+		  			 , A.groupStep
+				  FROM (SELECT boardNum
+				  			 , writeDate
+				  			 , userId
+				  			 , userName
+				  			 , title
+				  			 , content
+				  			 , count
+				  			 , password
+				  			 , chkSecret
+				  			 , groupNo
+				  			 , groupStep
+						  FROM qna, (SELECT @ROWNUM:=0) AS R
+						 ORDER BY groupNo DESC, groupStep ASC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+	
+	<select id="qnaCnt" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM qna
+	</select>
+	
+	<select id="qnaSearch" resultType="Qna">
+		SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.boardNum
+		  			 , A.writeDate
+		  			 , A.userId
+		  			 , A.userName
+		  			 , A.title
+		  			 , A.content
+		  			 , A.count
+		  			 , A.password
+		  			 , A.chkSecret
+		  			 , A.groupNo
+		  			 , A.groupStep
+				  FROM (SELECT boardNum
+				  			 , writeDate
+				  			 , userId
+				  			 , userName
+				  			 , title
+				  			 , content
+				  			 , count
+				  			 , password
+				  			 , chkSecret
+				  			 , groupNo
+				  			 , groupStep
+						  FROM qna, (SELECT @ROWNUM:=0) AS R
+						<if test = "searchKind == 'title'">
+						 WHERE title LIKE CONCAT('%',#{search},'%')		
+						</if>
+						<if test = "searchKind == 'userName'">
+						 WHERE userName LIKE CONCAT('%',#{search},'%')
+						</if>
+						 ORDER BY groupNo DESC, groupStep ASC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+	
+	<select id="qnaSearchCnt" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM qna
+	     <if test = "searchKind == 'title'">
+		 WHERE title LIKE CONCAT('%',#{search},'%')		
+		</if>
+		<if test = "searchKind == 'userName'">
+		 WHERE userName LIKE CONCAT('%',#{search},'%')
+		</if>
+	</select>
+	
+	<select id="qnaDetail" resultType="Qna">
+		SELECT *
+		  FROM qna
+		 WHERE boardNum = #{boardNum}
+	</select>
+	
+	<insert id="writeQna">
+		INSERT INTO qna (
+			   groupNo
+			 , userId
+			 , userName
+			 , title
+			 , content
+			 , chkSecret
+			 , password)
+		VALUES (
+			   (SELECT AUTO_INCREMENT
+			   	  FROM information_schema.tables
+			   	 WHERE table_name = 'qna'
+			   	   AND table_schema = database())
+			 , #{userId}
+			 , #{userName}
+			 , #{title}
+			 , #{content}
+			 , #{chkSecret}
+			 , #{password})
+	</insert>
+
+	<update id="updateQna">
+		UPDATE qna
+		   SET title		= #{title}
+		   	 , chkSecret	= #{chkSecret}
+		   	 , password		= #{password}
+		     , content		= #{content}
+		 WHERE boardNum 	= #{boardNum}
+	</update>
+	
+	<delete id="deleteQna">
+		DELETE FROM qna
+		 WHERE boardNum		= #{boardNum}
+	</delete>
+
+	<update id="noticeCntUp">
+		UPDATE notice
+		   SET count = count+1
+		 WHERE boardNum = #{boardNum}
+	</update>
+	
+	<update id="qnaCntUp">
+		UPDATE qna
+		   SET count = count+1
+		 WHERE boardNum = #{boardNum}
+	</update>
+</mapper>

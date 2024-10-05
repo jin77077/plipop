@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<link href="/css/user/myPage.css" rel="stylesheet">
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<section>
+			<!--마이페이지-->
+			<div class="container">
+				<div>
+					<ul class="myPageUl">
+						<li class="myPageCard order">
+							<a th:href="@{/order/orderList(userId=${session.userId})}">
+								<h3><strong>Order</strong><span>주문내역 조회</span></h3>
+								<p>고객님께서 주문하신 상품의<br> 주문내역을 확인하실 수 있습니다.</p>
+							</a>
+						</li>
+						<li class="myPageCard profile">
+							<a th:href="@{/members/memberInfo(userId=${session.userId})}">
+								<h3><strong>Profile</strong><span>회원 정보</span></h3>
+								<p>회원이신 고객님의 개인정보를<br> 관리하는 공간입니다.</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+.category-paging {
+	text-align: center;
+	padding : 15px 0 0 0;
+}
+
+.category-paging a {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 200;
+    font-size: 18px;
+    color: black;
+}
+
+.category-paging a:hover{
+    color: blue;
+    font-weight: bold;
+}
+
+.category-paging .current{
+    color: blue;
+    font-weight: bold;
+}
+
+.category-paging span {
+    display: block;
+    width: 37px;
+    height: 35px;
+    text-align: center;
+}

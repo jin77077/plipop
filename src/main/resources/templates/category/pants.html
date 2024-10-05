@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/product/category.css}" rel="stylesheet">
+	<script th:src="@{/js/category.js}"></script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<section>
+			<!--PANTS 카테고리 상품-->
+			<div class="flex-container">
+				<p class="index-title">PANTS</p>
+				<div class="main-content">
+					<article class="pants-component component" th:each="product, index: ${pantsList}">
+						<span th:text="${product.discountRate}+'%'" class="card-move-discountRate"></span>
+						<div class="card-image-div">
+							<a th:href="@{/product/detail/{productNo}(productNo= ${product.productNo})}">
+								<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}" class="card-image">
+							</a>
+						</div>
+						<div class="description">
+							<div th:text="${product.productName}" class="card-title"></div>
+							<span th:text="${product.discountRate}+'%'" class="card-discountRate"></span>
+							<span th:text="${product.salePrice}" class="card-salePrice"></span>
+							<span th:text="${product.consumerPrice}" class="card-consumerPrice"></span>
+							<div class="index-btnArea">
+								<span th:if="${product.hotYn}"><img src="/img/btn/hot.png"></span>
+								<span th:if="${product.mdPickYn}"><img src="/img/btn/mdPick.png"></span>
+								<span th:if="${product.quickYn}"><img src="/img/btn/quick.png"></span>
+								<span th:if="${product.bestYn}"><img src="/img/btn/best.png"></span>
+								<span th:if="${product.saleYn}"><img src="/img/btn/sale.png"></span>
+							</div>
+						</div>
+					</article>
+				</div>
+				<div class="category-paging">
+					<th:block th:if="${pantsList != null  and totalPage > 1}">
+						<!--현재페이지 1이상이면 << 추가-->
+						<th:block th:if="${currentPage > 1}">
+							<a th:href="@{/category/pants(category = 'pants', currentPage = ${currentPage -1})}">
+								<span class="fas fa-angle-double-left"></span>
+							</a>
+						</th:block>
+						<!--페이지 번호 출력-->
+						<th:block th:each="num: ${#numbers.sequence(1,totalPage)}">
+							<a th:href="@{/category/pants(category = 'pants', currentPage = ${num})}">
+								<span th:text="${num}" th:classappend="${num} == ${currentPage} ? 'current'"></span>
+							</a>
+						</th:block>
+						<!--현재페이지 총페이지보다 작으면 >> 추가-->
+						<th:block th:if="${currentPage < totalPage}">
+							<a th:href="@{/category/pants(category = 'pants', currentPage = ${currentPage +1})}">
+								<span class="fas fa-angle-double-right"></span>
+							</a>
+						</th:block>
+					</th:block>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

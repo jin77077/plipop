@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yg.portfolio.repository.CartRepository">
+	
+	<select id="cartList" resultType="Cart">
+		SELECT cartNo
+			 , (SELECT productName FROM product WHERE productNo = A.productNo) as productName
+			 , cartNo
+			 , productNo
+			 , size
+			 , color
+			 , quantity
+			 , userId
+			 , (SELECT salePrice 
+			 	  FROM product 
+			 	 WHERE productNo = A.productNo) as salePrice 
+			 , (SELECT salePrice * A.quantity 
+			 	  FROM product 
+			 	 WHERE productNo = A.productNo) as totalPrice 
+			 , (SELECT mainImage 
+			 	  FROM product 
+			 	 WHERE productNo = A.productNo) as mainImage 
+			 , (SELECT category 
+			 	  FROM product 
+			 	 WHERE productNo = A.productNo) as category 
+		  FROM cart A
+		 WHERE userid = #{userId};
+	</select>
+	
+	<insert id="cartSave">
+		INSERT INTO cart (
+			   productNo
+			 , quantity
+			 , size
+			 , color
+			 , userId )
+		VALUES (
+			   #{productNo}
+			 , #{quantity}
+			 , #{size}
+			 , #{color}
+			 , #{userId} )
+	</insert>
+	
+	<delete id="cartDelete">
+		DELETE FROM cart
+		 WHERE cartNo	= #{cartNo}
+		
+	</delete>
+	
+	<update id="cartUpdate">
+		UPDATE cart
+		   SET quantity = #{quantity}
+		 WHERE cartNo 	= #{cartNo}
+	</update>
+</mapper>

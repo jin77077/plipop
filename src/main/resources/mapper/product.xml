@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yg.portfolio.repository.ProductRepository">
+
+	<select id="productBest" resultType="Product">
+		 SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.*
+				  FROM (SELECT *
+						  FROM product, (SELECT @ROWNUM:=0) AS R
+						 WHERE productNo in (SELECT productNo
+		 					   FROM orderDetail 
+		 					   GROUP BY productNo
+		 					   ORDER BY sum(quantity) DESC)
+						 ORDER BY productNo DESC ) A ) B
+		  LIMIT 9
+	</select>
+	
+	<select id="productNew" resultType="Product">
+		SELECT *
+		  FROM product
+		  order by productNo desc
+		 LIMIT 8;
+	</select>
+	
+	<select id="productOuter" resultType="Product">
+		SELECT *
+		  FROM product
+		 WHERE category = 'outer'
+		 LIMIT 8;
+	</select>
+	
+	<select id="productTop" resultType="Product">
+		SELECT *
+		  FROM product
+		 WHERE category = 'top'
+		 LIMIT 8;
+	</select>
+	
+	<select id="productPants" resultType="Product">
+		SELECT *
+		  FROM product
+		 WHERE category = 'pants'
+		 LIMIT 8;
+	</select>
+	
+	<select id="productInfo" resultType="Product">
+		SELECT *
+		  FROM product
+		 WHERE productNo = #{productNo}
+	</select>
+	
+	<select id="productImg" resultType="ProductImg">
+		SELECT productNo,fileName
+		  FROM productImg
+		 WHERE productNo = #{productNo}
+	</select>
+	
+	<select id="productColor" resultType="ProductColor">
+		SELECT productNo,colorName
+		  FROM productColor
+		 WHERE productNo = #{productNo}
+	</select>
+	
+	<select id="productSize" resultType="ProductSize">
+		SELECT productNo,sizeName
+		  FROM productSize
+		 WHERE productNo = #{productNo}
+	</select>
+	
+	<select id="searchCnt" resultType="Integer">
+		SELECT count(*)
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		     , A.*
+		  FROM (SELECT *
+			      FROM product, (SELECT @ROWNUM:=0) AS R
+				 WHERE productName LIKE CONCAT('%',#{search},'%')
+				 <if test="category != '' and category != null">
+				   AND category = #{category}
+				 </if>
+				 <if test="minPrice > 0 and maxPrice > 0">
+				   AND salePrice BETWEEN #{minPrice} and #{maxPrice}		
+				 </if>
+				 <if test="alignKind == '' or alignKind == null or alignKind == 'recent'">
+				 ORDER BY productNo DESC
+				 </if>
+				 <if test="alignKind == 'priceasc'">
+				 ORDER BY salePrice ASC
+				 </if>
+				 <if test="alignKind == 'price'">
+				 ORDER BY salePrice DESC
+				 </if>
+				 <if test="alignKind == 'name'">
+				 ORDER BY productName DESC
+				 </if>
+				 ) A ) B
+	</select>
+	
+	<select id="search" resultType="Product">
+		SELECT * 
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		     , A.*
+		  FROM (SELECT *
+			      FROM product, (SELECT @ROWNUM:=0) AS R
+				 WHERE productName LIKE CONCAT('%',#{search},'%')
+				 <if test="category != '' and category != null">
+				   AND category = #{category}
+				 </if>
+				 <if test="minPrice > 0 and maxPrice > 0">
+				   AND salePrice BETWEEN #{minPrice} and #{maxPrice}		
+				 </if>
+				 <if test="alignKind == '' or alignKind == null or alignKind == 'recent'">
+				 ORDER BY productNo DESC
+				 </if>
+				 <if test="alignKind == 'priceasc'">
+				 ORDER BY salePrice ASC
+				 </if>
+				 <if test="alignKind == 'price'">
+				 ORDER BY salePrice DESC
+				 </if>
+				 <if test="alignKind == 'name'">
+				 ORDER BY productName DESC
+				 </if>
+				 ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+
+</mapper>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<script th:src="@{/js/order.js}"></script>
+	<link th:href="@{/css/product/order.css}" rel="stylesheet">
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<!--주문내역 화면-->
+		<div class="container orderList-container">
+			<div class="order-content">
+				<div class="order-title">
+					주문 내역<br>
+				</div>
+				<div class="order-body">
+					<table class="order-table">
+						<tr class="normal-table">
+							<td style="width:12%;">주문번호</td>
+							<td style="width:12%;">거래일시</td>
+							<td style="width:47%;">상품정보</td>
+							<td style="width:7%;">배송비</td>
+							<td style="width:7%;">총 결제금액</td>
+							<td style="width:7%;">결제전표</td>
+							<td style="width:7%;">상세보기</td>
+						</tr>
+						<tr class="mobile-table">
+							<td style="width:1%;">주문번호</td>
+							<td style="width:22%;">거래일시</td>
+							<td style="width:43%;">상품정보</td>
+							<td style="width:7%;">배송비</td>
+							<td style="width:5%;">총 결제금액</td>
+							<td style="width:31%;">결제전표</td>
+							<td style="width:7%;">상세보기</td>
+						</tr>
+						<th:block th:if="${#lists.isEmpty(orderList)}">
+							<tr>
+								<td colspan="100" style="height:148px; font-size:15px;">
+									<div>구매내역이 없습니다.</div>
+								</td>
+							</tr>
+						</th:block>
+						<th:block th:unless="${#lists.isEmpty(orderList)}">
+							<tr th:each="order:${orderList}" class="orderList-tr" style="height:60px;">
+								<td class="merchant_uid" th:text="${order.merchant_uid}"></td>
+								<td th:text="${order.paid_at}"></td>
+								<td><b th:text="${order.name}"></b><br>
+								<td th:if="${order.delivery_price == 1}">￦2,500원</td>
+								<td th:unless="${order.delivery_price == 1}">무료</td>
+								<td class="payment-amount" th:text="${order.amount}"></td>
+								<td>
+									<span th:attr="onclick=|paymentOpen('${order.receipt_url}')|" class="paymentSpan">전표확인</a>
+								</td>
+								<td class="svgIcon">
+									<span class="addList"><i class="bi bi-arrow-down-square-fill"></i></span>
+								</td>
+							</tr>
+						</th:block>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/product/search.css}" rel="stylesheet">
+	<script th:src="@{/js/search.js}"></script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<section>
+			<!--상품검색 결과화면-->
+			<div class="flex-container">
+				<p class="index-title" style="width : 100px">상품검색</p>
+				<!--상세검색 설정영역-->
+				<div class="detailSearchArea">
+					<div class="searchInputArea">
+						<form action="/product/search" class="searchForm">
+							<table class="search-table">
+								<tr>
+									<th>
+										<span>상품분류</span>
+									</th>
+									<td>
+										<select class="search-input custom-input" name="category">
+											<option value="" selected="">::: 카테고리 선택 :::</option>
+											<option value="outer">OUTER</option>
+											<option value="top">TOP</option>
+											<option value="pants">PANTS</option>
+											<option value="shoes">SHOES</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										<span>
+											<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"> 상품명
+										</span>
+									</th>
+									<td>
+										<input type="text" name="search" class="search-input custom-input search" th:value="${prevSearch}">
+									</td>
+								</tr>
+								<tr>
+									<th>
+										<span>판매가격대</span>
+									</th>
+									<td>
+										<input type="number" name="minPrice" min="0" max="1000000" value ="0" class="search-number-input custom-input"><span> ~ </span>
+										<input type="number" name="maxPrice" min="0" max="1000000" value ="0" class="search-number-input custom-input">
+									</td>
+								</tr>
+								<tr>
+									<th>
+										<span>검색정렬기준</span>
+									</th>
+									<td>
+										<select class="search-input custom-input" name="alignKind">
+											<option value="" selected="">::: 기준 선택 :::</option>
+											<option value="recent">최신순</option>
+											<option value="name">상품명순</option>
+											<option value="priceasc">낮은가격순</option>
+											<option value="price">높은가격순</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align: center;">
+										<span class="search-btn" onclick="search()">검색</span>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+				<!--검색된 상품개수-->
+				<ul class="guideInfo">
+						<li th:if="${totalCount != null}" th:text="${totalCount}+'개의 상품을 찾았습니다'" style='color:black;'></li>
+						<li th:unless="${totalCount != null}" style='color:black;'>0개의 상품을 찾았습니다</li>
+				</ul>
+				<!--검색결과 상품리스트-->
+				<th:block th:if="${#lists.size(searchList) > 0}">
+					<div class="main-content">
+						<article class="search-component component" th:each="product, index: ${searchList}">
+							<span th:text="${product.discountRate}+'%'" class="card-move-discountRate"></span>
+							<div class="card-image-div">
+								<a th:href="@{/product/detail/{productNo}(productNo= ${product.productNo})}">
+									<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}"
+										class="card-image">
+								</a>
+							</div>
+							<div class="description">
+								<div th:text="${product.productName}" class="card-title"></div>
+								<span th:text="${product.discountRate}+'%'" class="card-discountRate"></span>
+								<span th:text="${product.salePrice}" class="card-salePrice"></span>
+								<span th:text="${product.consumerPrice}" class="card-consumerPrice"></span>
+								<div class="index-btnArea">
+									<span th:if="${product.hotYn}"><img src="/img/btn/hot.png"></span>
+									<span th:if="${product.mdPickYn}"><img src="/img/btn/mdPick.png"></span>
+									<span th:if="${product.quickYn}"><img src="/img/btn/quick.png"></span>
+									<span th:if="${product.bestYn}"><img src="/img/btn/best.png"></span>
+									<span th:if="${product.saleYn}"><img src="/img/btn/sale.png"></span>
+								</div>
+							</div>
+						</article>
+					</div>
+				</th:block>
+				<th:block th:unless="${#lists.size(searchList) > 0}">
+					<!--검색결과 없음 안내문구-->
+					<div class="empty-content">
+						<div>
+							<span>검색결과가 없습니다.<br>정확한 검색어 인지 확인하시고 다시 검색해 주세요.<br></span>
+							<span>검색어/제외검색어의 입력이 정확한지 확인해 보세요.<br>두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요.<br>검색 옵션을 다시 확인해 보세요.</span>
+						</div>
+					</div>
+				</th:block>
+				<div class="search-paging">
+					<th:block th:if="${searchList != null  and totalPage > 1}">
+						<!--현재페이지 1이상이면 << 추가-->
+						<th:block th:if="${currentPage > 1}">
+							<a th:href="@{/product/search(search = ${prevSearch}, currentPage = ${currentPage -1})}">
+								<span class="fas fa-angle-double-left"></span>
+							</a>
+						</th:block>
+						<!--페이지 번호 출력-->
+						<th:block th:each="num: ${#numbers.sequence(1,totalPage)}">
+							<a th:href="@{/product/search(search = ${prevSearch}, currentPage = ${num})}">
+								<span th:text="${num}" th:classappend="${num} == ${currentPage} ? 'current'"></span>
+							</a>
+						</th:block>
+						<!--현재페이지 총페이지보다 작으면 >> 추가-->
+						<th:block th:if="${currentPage < totalPage}">
+							<a th:href="@{/product/search(search = ${prevSearch}, currentPage = ${currentPage +1})}">
+								<span class="fas fa-angle-double-right"></span>
+							</a>
+						</th:block>
+					</th:block>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

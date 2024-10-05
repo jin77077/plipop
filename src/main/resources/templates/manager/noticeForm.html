@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<script th:src="@{/js/notice.js}"></script>
+	<link th:href="@{/css/community/notice.css}" rel="stylesheet">
+	<!--TinyMCE-->
+	<script src="https://cdn.tiny.cloud/1/pyf8q7628ksvj3qubyx8rsw0isih2qaef5jsvej0txldx5ji/tinymce/5/tinymce.min.js"
+		referrerpolicy="origin"></script>
+	<!--TinyMCE 설정-->
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons fullscreen table link',
+			toolbar_mode: 'floating',
+			toolbar: 'emoticons fullscreen table link numlist bullist image imagetools charmap',
+			elementpath: false,
+			height: 420,
+			width: 1294
+		});
+	</script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<!--공지사항 작성화면-->
+		<section>
+			<div class="container">
+				<div class="notice-content">
+					<div class="notice-title">
+						<th:block th:if="${detail==null}">
+						NOTICE WRITE<br>
+							<span class="notice-sub-title">공지사항 작성</span>
+						</th:block>
+						<th:block th:unless="${detail==null}">
+						NOTICE UPDATE<br>
+							<span class="notice-sub-title">공지사항 수정</span>
+						</th:block>
+					</div>
+					<div class="notice-body">
+						<th:block th:if="${detail==null}">
+							<form method="post" action="/manager/writeNotice">
+								<table class="notice-write-table">
+									<tr>
+										<th>제목</th>
+										<td><input type="text" class="write-input" name="title"></td>
+									</tr>
+									<tr>
+										<th>작성자</th>
+
+										<td><input type="text" class="write-input" name="userName" th:value="${session.userName}" readonly></td>
+										<td><input type="hidden" name="userId" th:value="${session.userId}"></td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<textarea name="content"></textarea>
+										</td>
+									</tr>
+								</table>
+								<div class="notice-bottom">
+									<button>글작성</button>
+									<a th:href="@{/community/notice}" class="writeBtn">글목록</a>
+								</div>
+							</form>
+						</th:block>
+						<th:block th:unless="${detail==null}">
+							<form method="post" action="/manager/updateNotice">
+								<table class="notice-write-table">
+									<tr>
+										<th>제목</th>
+										<td><input type="text" class="write-input" name="title"	th:value="${detail.title}"></td>
+										<td><input type="hidden" name="boardNum" th:value="${detail.boardNum}"></td>
+									</tr>
+									<tr>
+										<th>작성자</th>
+										<td><input type="text" class="write-input" name="userName" th:value="${detail.userName}" readonly></td>
+										<td><input type="hidden" name="userId" th:value="${session.userId}"></td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<textarea name="content" th:utext="${detail.content}"></textarea>
+										</td>
+									</tr>
+								</table>
+								<div class="notice-bottom">
+									<button>글수정</button>
+									<a th:href="@{/community/notice}" class="writeBtn">글목록</a>
+								</div>
+							</form>
+						</th:block>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

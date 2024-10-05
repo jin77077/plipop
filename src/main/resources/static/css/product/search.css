@@ -1,0 +1,326 @@
+/* 320px 이상 CSS */
+@media only screen and (min-width:320px) {
+	.search-paging {
+		text-align: center;
+		padding : 15px 0 0 0;
+	}
+	
+	.search-paging a {
+	    display: inline-block;
+	    text-decoration: none;
+	    font-weight: 200;
+	    font-size: 18px;
+	    color: black;
+	}
+	
+	.search-paging a:hover{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.search-paging .current{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.search-paging span {
+	    display: block;
+	    width: 37px;
+	    height: 35px;
+	    text-align: center;
+	}
+	
+	.detailSearchArea {
+	    text-align: center;
+	    font-family: 'Work Sans','Malgun Gothic','맑은 고딕','Nanum Gothic',sans-serif;
+	    font-size: 11px;
+	}
+	
+	.searchInputArea {
+	    display: inline-block;
+	    padding: 20px;
+	    border: 1px solid #d5d4d4;
+	}
+	
+	.search-table th {
+		text-align: left;
+	    padding-right : 20px;
+	    font-size : 11px;
+	    width : 28%;
+	}
+	
+	.search-table td {
+	    text-align: left;
+	    padding : 5px 0;
+	}
+	
+	.search-table td>input {
+	}
+	
+	.search-input {
+		width : 209px;
+		height: 25px;
+	}
+	
+	.custom-input {
+	    border: 1px solid #c2c2c2;
+	}
+	
+	.search-number-input {
+		width : 97px;
+		height: 25px;
+	}
+	
+	.search-btn {
+	    background: #464646;
+	    color: white;
+	    border: 1px solid #464646;
+	    border-radius: 3px;
+	    text-align: center;
+	    margin-top: 6px;
+	    font-size: 12px;
+	    width: 100px;
+	    height: 39px;
+	    display: inline-block;
+	    padding-top: 9px;
+	}
+	
+	.empty-content {
+	    text-align: center;
+	    height: 174px;
+	    padding-top: 47px;
+	}
+	
+	.empty-content > div {
+		display : inline-block;
+	}
+	
+	.empty-content > div > span:nth-child(1){
+	    font-size: 12px;
+	    font-weight: 700;	
+	}
+	
+	.empty-content > div > span:nth-child(2){
+	    display: inline-block;
+	    margin-top: 20px;
+	    font-size: 12px;
+		
+	}
+}
+/* 768px 이상 CSS */ 
+@media only screen and (min-width:768px) {
+	.search-paging {
+		text-align: center;
+		padding : 15px 0 0 0;
+	}
+	
+	.search-paging a {
+	    display: inline-block;
+	    text-decoration: none;
+	    font-weight: 200;
+	    font-size: 18px;
+	    color: black;
+	}
+	
+	.search-paging a:hover{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.search-paging .current{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.search-paging span {
+	    display: block;
+	    width: 37px;
+	    height: 35px;
+	    text-align: center;
+	}
+	
+	.detailSearchArea {
+	    text-align: center;
+	    font-family: 'Work Sans','Malgun Gothic','맑은 고딕','Nanum Gothic',sans-serif;
+	    font-size: 11px;
+	}
+	
+	.searchInputArea {
+	    display: inline-block;
+	    padding: 52px 94px 35px 94px;
+	    border: 1px solid #d5d4d4;
+	}
+	
+	.search-table th {
+		text-align: left;
+	    padding-right : 20px;
+	    font-size : 11px;
+	}
+	
+	.search-table td {
+	    text-align: left;
+	    padding : 5px 0;
+	}
+	
+	.search-table td>input {
+	}
+	
+	.search-input {
+		width : 360px;
+		height: 25px;
+	}
+	
+	.custom-input {
+	    border: 1px solid #c2c2c2;
+	}
+	
+	.search-number-input {
+		width : 172px;
+		height: 25px;
+	}
+	
+	.search-btn {
+	    background: #464646;
+	    color: white;
+	    border: 1px solid #464646;
+	    border-radius: 3px;
+	    text-align: center;
+	    margin-top: 6px;
+	    font-size: 12px;
+	    width: 100px;
+	    height: 39px;
+	    display: inline-block;
+	    padding-top: 9px;
+	}
+	
+	.empty-content {
+	    text-align: center;
+	    height: 174px;
+	    padding-top: 47px;
+	}
+	
+	.empty-content > div {
+		display : inline-block;
+	}
+	
+	.empty-content > div > span:nth-child(1){
+	    font-size: 12px;
+	    font-weight: 700;	
+	}
+	
+	.empty-content > div > span:nth-child(2){
+	    display: inline-block;
+	    margin-top: 20px;
+	    font-size: 12px;
+		
+	}
+}
+/* 1921px 이상 CSS */
+@media only screen and (min-width:1921px) {
+	.search-paging {
+		text-align: center;
+		padding : 15px 0 0 0;
+	}
+	
+	.search-paging a {
+	    display: inline-block;
+	    text-decoration: none;
+	    font-weight: 200;
+	    font-size: 18px;
+	    color: black;
+	}
+	
+	.search-paging a:hover{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.search-paging .current{
+	    color: blue;
+	    font-weight: bold;
+	}
+	
+	.search-paging span {
+	    display: block;
+	    width: 37px;
+	    height: 35px;
+	    text-align: center;
+	}
+	
+	.detailSearchArea {
+	    text-align: center;
+	    font-family: 'Work Sans','Malgun Gothic','맑은 고딕','Nanum Gothic',sans-serif;
+	    font-size: 11px;
+	}
+	
+	.searchInputArea {
+	    display: inline-block;
+	    padding: 52px 94px 35px 94px;
+	    border: 1px solid #d5d4d4;
+	}
+	
+	.search-table th {
+		text-align: left;
+	    padding-right : 20px;
+	    font-size : 11px;
+	}
+	
+	.search-table td {
+	    text-align: left;
+	    padding : 5px 0;
+	}
+	
+	.search-table td>input {
+	}
+	
+	.search-input {
+		width : 360px;
+		height: 25px;
+	}
+	
+	.custom-input {
+	    border: 1px solid #c2c2c2;
+	}
+	
+	.search-number-input {
+		width : 172px;
+		height: 25px;
+	}
+	
+	.search-btn {
+	    background: #464646;
+	    color: white;
+	    border: 1px solid #464646;
+	    border-radius: 3px;
+	    text-align: center;
+	    margin-top: 6px;
+	    font-size: 12px;
+	    width: 100px;
+	    height: 39px;
+	    display: inline-block;
+	    padding-top: 9px;
+	}
+	
+	.empty-content {
+	    text-align: center;
+	    height: 174px;
+	    padding-top: 47px;
+	}
+	
+	.empty-content > div {
+		display : inline-block;
+	}
+	
+	.empty-content > div > span:nth-child(1){
+	    font-size: 12px;
+	    font-weight: 700;	
+	}
+	
+	.empty-content > div > span:nth-child(2){
+	    display: inline-block;
+	    margin-top: 20px;
+	    font-size: 12px;
+		
+	}
+}
+

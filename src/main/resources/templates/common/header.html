@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<div th:fragment="sampleheader">
+		<header>
+			<div class="header_top">
+				<div class="inwrap">
+					<!--최상단 로고-->
+					<ul class="navlog">
+						<li>
+							<a th:href="@{/}" ><img src="/img/logo-black.png"></a>
+						</li>
+					</ul>
+					<!--NAV BAR-->
+					<ul class="guide_nav">
+						<th:block th:if="${session.userRole != null }">
+							<li>
+								<span th:text="${session.userName}"></span>
+								<span style="font-size: 14px;">님</span>
+							</li>
+							<li><a th:href="@{/members/myPage}"><span>마이페이지</span></a>
+							</li>
+							<li>
+								<a th:href="@{#}" id="drop-Btn">커뮤니티</a>
+								<div id="drop-content">
+									<div class="dropBox"><a th:href="@{/community/notice}">공지사항</a></div>
+									<div class="dropBox"><a th:href="@{/community/qna}">질문사항</a></div>
+								</div>
+							</li>
+							<li><a th:href="@{/cart/cartList(userId=${session.userId})}"><span>장바구니</span></a></li>
+						</th:block>
+						<th:block th:if="${session.userRole == null}">
+							<li><a th:href="@{/users/loginForm}"><span>로그인</span></a></li>
+							<li><a th:href="@{/users/joinForm}"><span>회원가입</span></a></li>
+							<li>
+								<a th:href="@{#}" id="drop-Btn">커뮤니티</a>
+								<div id="drop-content">
+									<div class="dropBox"><a th:href="@{/community/notice}">공지사항</a></div>
+									<div class="dropBox"><a th:href="@{/community/qna}">질문사항</a></div>
+								</div>
+							</li>
+							<li><a th:href="@{/cart/cartList(userId=${session.userId})}"><span>장바구니</span></a></li>
+						</th:block>
+						<th:block th:if="${session.userRole != null }">
+							<li><a th:href="@{/logout}"><span>LOGOUT</span></a></li>
+						</th:block>
+						<th:block th:if="${session.userRole == 'ROLE_MANAGER' }">
+							<li><a th:href="@{/manager/managerMenu}"><span>MANAGER</span></a></li>
+						</th:block>
+						<th:block th:if="${session.userRole == 'ROLE_ADMIN' }">
+							<li><a th:href="@{/admin}"><span>ADMIN</span></a></li>
+						</th:block>
+					</ul>
+					<!--burger 메뉴-->
+					<div class="burger-menu">
+			            <div class="burger-head">
+			                <div class="slide-open" id="slide-open">
+			                    <span class="burgur" id="burgur">
+			                        <span class="top-line"></span>
+			                        <span class="bot-line"></span>
+			                    </span>
+			                </div>
+			            </div>
+			            <div class="burger-body">
+			                <div class="slide" id="slide">
+			                    <ul>
+			                    	<li>
+			                    		상품검색<br><br><br>
+			                    		<feildset class="burger-searchBar">
+											<form action="/product/search">
+											<input type="text" name="search" placeholder="상품명 입력" required>
+											<button><i class="fas fa-search"></i></button>
+											</form>
+										</feildset>
+			                    	</li>
+			                        <th:block th:if="${session.userRole != null }">
+										<li>
+											<span th:text="${session.userName}"></span>
+											<span style="font-size: 14px;">님</span>
+										</li>
+										<li><a th:href="@{/members/myPage}"><span>마이페이지</span></a>
+										</li>
+										<li>
+											<details>
+					                            <summary>커뮤니티</summary>
+					                            <a th:href="@{/community/notice}">공지사항</a><br>
+					                            <a th:href="@{/community/qna}">질문사항</a>
+			                           		 </details>
+										</li>
+										<li><a th:href="@{/cart/cartList(userId=${session.userId})}"><span>장바구니</span></a></li>
+									</th:block>
+									<th:block th:if="${session.userRole == null}">
+										<li><a th:href="@{/users/loginForm}"><span>로그인</span></a></li>
+										<li><a th:href="@{/users/joinForm}"><span>회원가입</span></a></li>
+										<li>
+											<details>
+					                            <summary>커뮤니티</summary>
+					                            <a th:href="@{/community/notice}">공지사항</a><br>
+					                            <a th:href="@{/community/qna}">질문사항</a>
+			                           		 </details>
+										</li>
+										<li><a th:href="@{/cart/cartList(userId=${session.userId})}"><span>장바구니</span></a></li>
+									</th:block>
+									<th:block th:if="${session.userRole != null }">
+										<li><a th:href="@{/logout}"><span>LOGOUT</span></a></li>
+									</th:block>
+									<th:block th:if="${session.userRole == 'ROLE_MANAGER' }">
+										<li><a th:href="@{/manager/managerMenu}"><span>MANAGER</span></a></li>
+									</th:block>
+									<th:block th:if="${session.userRole == 'ROLE_ADMIN' }">
+										<li><a th:href="@{/admin}"><span>ADMIN</span></a></li>
+									</th:block>
+			                    </ul>
+			                </div>
+			            </div>
+					</div>
+				</div>
+			</div>
+			<!--검색창-->
+			<feildset class="searchBar">
+				<form action="/product/search">
+				<input type="text" name="search" placeholder="상품명을 입력해주세요" required>
+				<button><i class="fas fa-search"></i></button>
+				</form>
+			</feildset>
+			<!--하단 NAV-->
+			<!--<img src="/img/logo-white.png" class="shopLogo">
+			<p class="shopDescription">'플리팝'는 남성의 매력을 <br> 극대화할 수 있는 디자인을 선보입니다.</p>-->
+			<div class="index-header">
+				<div class="shop-name-area">
+					<div class="shop-name">PLIPOP</div>
+				</div>
+			</div>
+			<!--카테고리 BAR-->
+			<div class="category-bar">
+				<ul>
+					<li>
+						<div>
+							<a th:href="@{/category/new}" class="btn">
+								NEW
+							</a>
+						</div>
+					</li>
+					<li>
+						<div>
+							<a th:href="@{/category/best}" class="btn">
+								BEST
+							</a>
+						</div>
+					</li>
+					<li>
+						<div>
+							<a th:href="@{/category/outer(category='outer')}"class="btn">
+								OUTER
+							</a>
+						</div>
+					</li>
+					<li>
+						<div>
+							<a th:href="@{/category/top(category='top')}"class="btn">
+								TOP
+							</a>
+						</div>
+					</li>
+					<li>
+						<div>
+							<a th:href="@{/category/pants(category='pants')}"class="btn">
+								PANTS
+							</a>
+						</div>
+					</li>
+					<li>
+						<div>
+							<a th:href="@{/category/shoes(category='shoes')}" class="btn">
+								SHOES
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</header>
+	</div>
+</body>
+</html>

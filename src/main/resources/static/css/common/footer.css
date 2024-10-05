@@ -1,0 +1,285 @@
+/* 320px 이상 CSS */ 
+
+footer {
+	width : 100%;
+	height : 190px;
+	position : absolute;
+	bottom : 0;
+	left : 0;
+}
+@media (min-width:320px) {
+	footer {
+		min-height: 120px;
+		padding : 12px 0;
+		height: 190px;
+	}
+	
+	.footer-container {
+		margin : 0 auto;
+		max-width: 1500px;	
+		color: white;
+	}
+	
+	.footer-logo {
+	    width: 140px;
+	    padding-left : 15px;
+	}
+	
+	.footer-logo > img {
+	    width: 75px;
+	    padding-left : 6px;
+	}
+	
+	.footer-description {
+	    width : 100%;
+	    padding-top : 19px;
+	    padding-left : 22px;
+	}
+	.footer-description > p {
+	    text-align: left;
+	    margin-bottom: 11px;
+	    font-size: 10px;
+	}
+	
+	.footer-account {
+		font-size : 12px;
+		margin-left : 30px;
+		width : 230px;
+		display: none;
+	}
+	
+	.footer-account > p {
+	    font-weight: bold;
+	    font-size: 14px;
+	}
+	
+	.footer-account > div {
+		margin : 10px 0;
+	}
+	
+	.footer-customer {
+		font-size : 20px;
+		width: 402px;
+		letter-spacing: 1px;
+		display : none;
+	}
+	
+	.footer-customer > div{
+		display : flex;
+	}
+	
+	.footer-customer > div > i{
+		margin-right: 21px;
+		margin-bottom: 12px;
+	}
+	
+	.footer-customer > div > p{
+		font-size : 28px;
+		position : relative;
+		top : 0px;
+		margin-bottom : 26px;
+	}
+	
+	.footer-customer > p {
+	    font-weight: bold;
+	    font-size: 20px;
+	}
+	
+	.customer-content {
+		font-size: 18px;
+	}
+	
+	.footer-normal {
+		display:none;
+	}
+	
+	.footer-mobile {
+		display:block;
+	}
+}
+
+/* 768 이상 CSS */
+@media (min-width:768px) {
+	footer {
+		min-height: 180px;
+		padding : 30px 0;
+	}
+	
+	.footer-container {
+		display : flex;
+		margin : 0 auto;
+		max-width: 1500px;	
+		color: white;
+	}
+	
+	.footer-logo {
+	    width: 140px;
+	    padding-top : 4px;
+	}
+	
+	.footer-logo > img {
+	    width: 100px;
+	}
+	
+	.footer-description {
+	    width : 730px;
+	    padding-top : 6px;
+	    padding-left : 23px;
+	}
+	.footer-description > p {
+	    text-align: left;
+	    margin-bottom: 11px;
+	    font-size: 12px;
+	}
+	
+	.footer-account {
+		font-size : 12px;
+		margin-left : 30px;
+		width : 230px;
+		display: block;
+	}
+	
+	.footer-account > p {
+	    font-weight: bold;
+	    font-size: 14px;
+	}
+	
+	.footer-account > div {
+		margin : 10px 0;
+	}
+	
+	.footer-customer {
+		font-size : 12px;
+		display : block;
+	}
+	
+	.footer-customer > div{
+		display : flex;
+	}
+	
+	.footer-customer > div > i{
+		margin-right: 21px;
+		margin-bottom: 12px;
+	}
+	
+	.footer-customer > div > p{
+		font-size : 28px;
+		position : relative;
+		top : -11px;
+		margin-bottom : 0px;
+	}
+	
+	.footer-customer > p {
+	    font-weight: bold;
+	    font-size: 18px;
+	}
+	
+	.customer-content {
+		font-size: 10px;
+	}
+	
+	.footer-normal {
+		display:block;
+	}
+	
+	.footer-mobile {
+		display:none;
+	}
+	
+	.shop-name {
+		font-weight: bold;
+		font-family: sans-serif, monospace;
+	}
+}
+
+
+
+/* 1921px 이상 CSS */ 
+@media (min-width:1921px) {
+	footer {
+		min-height: 180px;
+		padding : 30px 0;
+	}
+	
+	.footer-container {
+		display : flex;
+		margin : 0 auto;
+		max-width: 1500px;	
+		color: white;
+	}
+	
+	.footer-logo {
+	    width: 140px;
+	    padding-top : 4px;
+	}
+	
+	.footer-logo > img {
+	    width: 100px;
+	}
+	
+	.footer-description {
+	    width : 730px;
+	    padding-top : 6px;
+	    padding-left : 23px;
+	}
+	.footer-description > p {
+	    text-align: left;
+	    margin-bottom: 11px;
+	    font-size: 12px;
+	}
+	
+	.footer-account {
+		font-size : 12px;
+		margin-left : 30px;
+		width : 230px;
+		display: block;
+	}
+	
+	.footer-account > p {
+	    font-weight: bold;
+	    font-size: 14px;
+	}
+	
+	.footer-account > div {
+		margin : 10px 0;
+	}
+	
+	.footer-customer {
+		font-size : 12px;
+		display : block;
+	}
+	
+	.footer-customer > div{
+		display : flex;
+	}
+	
+	.footer-customer > div > i{
+		margin-right: 21px;
+		margin-bottom: 12px;
+	}
+	
+	.footer-customer > div > p{
+		font-size : 28px;
+		position : relative;
+		top : -11px;
+		margin-bottom : 0px;
+	}
+	
+	.footer-customer > p {
+	    font-weight: bold;
+	    font-size: 18px;
+	}
+	
+	.footer-normal {
+		display:block;
+	}
+	
+	.footer-mobile {
+		display:none;
+	}
+	
+	.shop-name {
+		font-weight: bold;
+		font-family: sans-serif, monospace;
+	}
+}

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yg.portfolio.repository.ManagerRepository">
+
+	<!-- 공지사항 작성 -->
+	<insert id="writeNotice">
+		INSERT INTO notice (
+			   userId
+			 , userName
+			 , title
+			 , content)
+		VALUES (
+			   #{userId}
+			 , #{userName}
+			 , #{title}
+			 , #{content})
+	</insert>
+	
+	<!-- 공지사항 수정 -->
+	<update id="updateNotice">
+		UPDATE notice
+		   SET title		= #{title}
+		     , content		= #{content}
+		     , updateUser	= #{userId}
+		     , updateTime	= current_timestamp
+		 WHERE boardNum 	= #{boardNum}
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNotice">
+		DELETE FROM notice
+		 WHERE boardNum		= #{boardNum}
+	</delete>
+	
+	<!-- QNA 답글 작성 -->
+	<insert id="writeReplyQna">
+		INSERT INTO qna (
+			   groupNo
+			 , groupStep
+			 , userId
+			 , userName
+			 , title
+			 , content
+			 , password
+			 , chkSecret )
+		VALUES (
+			   #{groupNo}
+			 , (SELECT groupStep
+			 	  FROM qna as A
+			 	 WHERE boardNum = #{groupNo}) +1
+			 , #{userId}
+			 , #{userName}
+			 , #{title}
+			 , #{content}
+			 , #{password}
+			 , "reply")
+	</insert>
+	
+	<!-- 상품등록 -->
+	<insert id="productSave">
+		INSERT INTO product (
+			   category
+			 , productName
+			 , discountRate
+			 , consumerPrice
+			 , salePrice
+			 , stock
+			 , mainImage
+			 , hotYn
+			 , mdPickYn
+			 , quickYn
+			 , bestYn
+			 , saleYn
+			  )
+		VALUES (
+			   #{category}
+			 , #{productName}
+			 , #{discountRate}
+			 , #{consumerPrice}
+			 , #{salePrice}
+			 , #{stock}
+			 , #{mainImage}
+			 , #{hotYn}
+			 , #{mdPickYn}
+			 , #{quickYn}
+			 , #{bestYn}
+			 , #{saleYn} )
+	</insert>
+	
+	<!-- 상품 상세이미지 등록 -->
+	<insert id="productImgSave" parameterType="ProductImg">
+		INSERT INTO productImg (
+			   productNo
+			 , fileName )
+		VALUES (
+			   (SELECT MAX(productNo) from product)
+			 , #{fileName} )
+	</insert>
+	
+	<!-- 상품 컬러 등록 -->
+	<insert id="productColorSave" parameterType="ProductColor">
+		INSERT INTO productColor (
+			   productNo
+			 , colorName )
+		VALUES (
+			   (SELECT MAX(productNo) from product)
+			 , #{colorName} )
+	</insert>
+	
+	<!-- 상품 사이즈 등록 -->
+	<insert id="productSizeSave" parameterType="ProductSize">
+		INSERT INTO productSize (
+			   productNo
+			 , sizeName )
+		VALUES (
+			   (SELECT MAX(productNo) from product)
+			 , #{sizeName} )
+	</insert>
+	<!-- 상품 목록 조회 -->
+	<select id="productAllList" resultType="Product">
+		SELECT *
+		  FROM product
+	</select>
+	
+	<!-- 상품 수정 -->
+	<update id="productUpdate">
+		UPDATE product
+		   SET productName		= #{productName}
+			 , consumerPrice	= #{consumerPrice}
+			 , discountRate		= #{discountRate}
+			 , salePrice		= #{salePrice}
+			 , stock 			= #{stock}
+			 , hotYn			= #{hotYn}
+			 , mdPickYn			= #{mdPickYn}
+			 , quickYn			= #{quickYn}
+			 , bestYn			= #{bestYn}
+			 , saleYn			= #{saleYn}
+		 WHERE productNo		= #{productNo}	   
+	</update>
+</mapper>

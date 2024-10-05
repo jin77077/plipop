@@ -1,0 +1,391 @@
+/* 320px 이상 CSS */
+@media only screen and (min-width:320px) {
+	.cart-title {
+	    text-align: center;
+	    font-size: 16px;
+	    font-weight: 700;
+	}
+	
+	.cart-sub-title {
+	    font-size: 15px;
+	    font-weight: 100;
+	}
+	
+	.cart-content {
+		padding:0 0 26px 0;
+	}
+	
+	.cart-body {
+	    text-align: center;
+	    margin: 12px 0 0 0;
+	    font-size: 13px;
+	    color:#333333;
+	}
+	
+	.cart-table {
+		width : 100%;
+	}
+	
+	.cart-table .mainImage{
+		width : 100px;
+		padding : 5px 0;
+	}
+	
+	.cart-table tr:first-child{
+	    border-top: 2px solid;
+	}
+	
+	.cart-table tr{
+	    border-top: 1px solid;
+	    border-bottom: 1px solid;
+	    height: 34px;
+	    font-size : 12px;
+	    text-align: center;
+	}
+	
+	
+	.cartBtnArea {
+		text-align: center;
+		color : white;
+	}
+	
+	.cartBtnArea div{
+	    display: inline-block;
+	    background: #282828;
+	    padding: 10px 21px;
+	    font-size: 12px;
+	    margin-top : 25px;
+	}
+	
+	
+	.quantity {
+	    display: inline-block;
+	    position: relative;
+	    width: 44px;
+	    height : 21px;
+	    vertical-align: top;
+	    top : 5px;
+	    left : 14px;
+	}
+	
+	.quantityBtn {
+		display : inline-flex;
+	}
+	.upBtn {
+	    position: relative;
+	    top: -4px;
+	    left: 10px;
+	    text-decoration: none;
+	}
+	
+	.downBtn {
+	    position: relative;
+	    top: 6px;
+	    left: -16px;
+	    text-decoration: none;
+	}
+	
+	.deleteBtn {
+		border: 1px solid #b4b0b0;
+		padding : 4px;
+		font-size : 10px;
+	}
+	
+	.total-table {
+		width : 100%;
+	}
+	
+	.total-table tr {
+		    height: 46px;
+	    text-align: center;
+	    font-size: 14px;
+	    border-top: 1px solid #d6d1d1;
+	    font-weight: bold;
+	}
+	
+	.guideText {
+	    position: absolute;
+	    top: 186px;
+	    right: 15px;
+	    font-size: 12px;
+	    color: gray;
+	}
+	
+	/*MOBILE CART*/
+	.mobile-cart {
+		display : flex;
+		border : 1px solid #cdcdcd;
+		margin : 10px 0;
+		border-radius: 5px;
+		padding : 10px;
+	}
+	
+	.mobile-cart .mainImage {
+		width : 80px;
+		border-radius: 5px;
+	}
+	
+	.cart-left {
+		margin-right: 10px;
+	}
+	
+	.cart-right {
+		text-align: left;
+		padding-top : 16px;
+		line-height: 29px;
+	}
+	
+	.empty-cart {
+		border : 1px solid #d8d8d8;
+		border-radius: 5px;
+		padding : 33px;
+		width : 86%;
+		margin : 17px auto;
+	}
+	
+	.empty-image img{
+		width : 77px;
+		height: 74px;
+		margin : 15px 0;
+	}
+	
+	.checkAllArea {
+		text-align: left;
+		padding-left : 5px;
+		color : gray;
+	}
+	
+	.checkAllArea > .checkAll {
+		margin-right: 5px;
+		position : relative;
+		top : 1px;
+	}
+}
+/* 768px 이상 CSS */ 
+@media only screen and (min-width:768px) {
+	.cart-title {
+	    text-align: center;
+	    font-size: 20px;
+	    font-weight: 700;
+	    padding : 23px 0;
+	}
+	
+	.cart-sub-title {
+	    font-size: 15px;
+	    font-weight: 100;
+	}
+	
+	.cart-content {
+		padding:50px 0;
+	}
+	
+	.cart-body {
+	    text-align: center;
+	    margin: 40px 0 0 0;
+	    font-size: 13px;
+	    color:#333333;
+	}
+	
+	.cart-table {
+		width : 100%;
+	}
+	
+	.cart-table .mainImage{
+		width : 100px;
+		padding : 5px 0;
+	}
+	
+	.cart-table tr:first-child{
+	    border-top: 2px solid;
+	}
+	
+	.cart-table tr{
+	    border-top: 1px solid;
+	    border-bottom: 1px solid;
+	    height: 34px;
+	    font-size : 12px;
+	    text-align: center;
+	}
+	
+	
+	.cartBtnArea {
+		text-align: center;
+		color : white;
+	}
+	
+	.cartBtnArea div{
+	    display: inline-block;
+	    background: #282828;
+	    padding: 10px 21px;
+	    font-size: 12px;
+	    margin-top : 25px;
+	}
+	
+	
+	.quantity {
+	    display: inline-block;
+	    position: relative;
+	    width: 44px;
+	    height : 21px;
+	    vertical-align: top;
+	    top : 0px;
+	    left : 20px;
+	}
+	
+	.quantityBtn {
+		display : inline-flex;
+	}
+	.upBtn {
+	    position: relative;
+	    top: -3px;
+	    left: 14px;
+	    text-decoration: none;
+	}
+	
+	.downBtn {
+	    position: relative;
+	    top: 7px;
+	    left: -11px;
+	    text-decoration: none;
+	}
+	
+	.deleteBtn {
+		border: 1px solid #b4b0b0;
+		padding : 4px 7px;
+	}
+	
+	.total-table {
+		width : 100%;
+	}
+	
+	.total-table tr {
+		    height: 46px;
+	    text-align: center;
+	    font-size: 14px;
+	    border-top: 1px solid #d6d1d1;
+	    font-weight: bold;
+	}
+	
+	.guideText {
+	    position: absolute;
+	    top: 408px;
+	    right: 313px;
+	    font-size: 12px;
+	    color: gray;
+	}
+}
+/* 1921px 이상 CSS */
+@media only screen and (min-width:1921px) {
+	.cart-title {
+	    text-align: center;
+	    font-size: 20px;
+	    font-weight: 700;
+	    padding : 23px 0;
+	}
+	
+	.cart-sub-title {
+	    font-size: 15px;
+	    font-weight: 100;
+	}
+	
+	.cart-content {
+		padding:50px 0;
+	}
+	
+	.cart-body {
+	    text-align: center;
+	    margin: 40px 0 0 0;
+	    font-size: 13px;
+	    color:#333333;
+	}
+	
+	.cart-table {
+		width : 100%;
+	}
+	
+	.cart-table .mainImage{
+		width : 100px;
+		padding : 5px 0;
+	}
+	
+	.cart-table tr:first-child{
+	    border-top: 2px solid;
+	}
+	
+	.cart-table tr{
+	    border-top: 1px solid;
+	    border-bottom: 1px solid;
+	    height: 34px;
+	    font-size : 12px;
+	    text-align: center;
+	}
+	
+	
+	.cartBtnArea {
+		text-align: center;
+		color : white;
+	}
+	
+	.cartBtnArea div{
+	    display: inline-block;
+	    background: #282828;
+	    padding: 10px 21px;
+	    font-size: 12px;
+	    margin-top : 25px;
+	}
+	
+	
+	.quantity {
+	    display: inline-block;
+	    position: relative;
+	    width: 44px;
+	    height : 21px;
+	    vertical-align: top;
+	    top : 0px;
+	    left : 20px;
+	}
+	
+	.quantityBtn {
+		display : inline-flex;
+	}
+	.upBtn {
+	    position: relative;
+	    top: -3px;
+	    left: 14px;
+	    text-decoration: none;
+	}
+	
+	.downBtn {
+	    position: relative;
+	    top: 7px;
+	    left: -11px;
+	    text-decoration: none;
+	}
+	
+	.deleteBtn {
+		border: 1px solid #b4b0b0;
+		padding : 4px 7px;
+	}
+	
+	.total-table {
+		width : 100%;
+	}
+	
+	.total-table tr {
+		    height: 46px;
+	    text-align: center;
+	    font-size: 14px;
+	    border-top: 1px solid #d6d1d1;
+	    font-weight: bold;
+	}
+	
+	.guideText {
+	    position: absolute;
+	    top: 408px;
+	    right: 632px;
+	    font-size: 12px;
+	    color: gray;
+	}
+}
+
+

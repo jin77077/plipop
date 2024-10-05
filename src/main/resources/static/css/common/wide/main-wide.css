@@ -1,0 +1,271 @@
+@charset "UTF-8";
+
+/* 1921px 이상 CSS */ 
+@media (min-width:1921px) {
+	body {
+		/*font-family: 'Nanum Gothic Coding', monospace;*/
+		font-family: sans-serif, monospace;
+		/*스크롤바 없애기*/
+		-ms-overflow-style: none;
+	}
+	
+	::-webkit-scrollbar {
+		/*스크롤바 없애기*/
+		 display: none; 
+	}
+	
+	/*안내문구*/
+	.guideInfo {
+	    color: #f76560;
+	    font-size: 11px;
+	    background: #fff;
+	    padding-left: 0px;
+	    border: 0;
+	    margin-top: 20px;
+	}
+	
+	.guideInfo li {
+		text-align: left;
+		list-style: none;
+		padding: 0 0 0 23px;
+		background: url("//img.echosting.cafe24.com/skin/base/common/ico_info.gif") no-repeat 0 1px;
+	}
+	
+	/*여백추가*/
+	.addLeftMargin {
+		margin-left : 12px;
+	}
+	
+	/*SECTION 설정*/
+	section {
+		padding-top : 56px;
+		min-height : 573px;
+	}
+	
+	
+	/*카테고리 bar 고정*/
+	.sectionFiexd{
+		padding-top : 118px;	
+	}
+	
+	/* slick 화살표 설정 */
+	.slick-arrow{
+	  z-index: 2; /* prev버튼은 위치 이동시 이미지 뒤로 숨겨짐 */
+	}
+	.slick-prev.slick-arrow{ /* prev 이전 */
+		left: 15px;
+	}
+	.slick-next.slick-arrow{ /* next 다음 */
+		right: 15px;
+	}
+	
+	
+	/*컨테이너 설정*/
+	.flex-container {
+		max-width: 1500px;
+		margin: 80px auto;
+	}
+	
+	.main-content {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content : flex-start;
+	}
+	
+	.component {
+		flex : 0 0 25%;
+		padding: 0 8px;
+	}
+	
+	/*상품카드 이미지*/
+	.component img{
+		max-width: 100%;
+		display : block;
+	}
+	
+	/*상품카드 설명영역*/
+	.component .description {
+		/*font-family: "Roboto","Arial","Nanum Gothic","Malgun Gothic","맑은 고딕","Dotum","돋움","Apple SD Gothic Neo","AppleGothic",sans-serif;*/
+		font-family: 'Poppins',Malgun Gothic, 'ë§‘ì€ ê³ ë”•', Dotum, 'ë‹ì›€', sans-serif;
+		padding : 1rem 0;
+		background-color: #ffffff;
+	}
+	
+	/*상품카드 상품명*/
+	.description .card-title{
+		font-weight: 700;
+		font-size : 16px;
+	}
+	
+	/*상품목록 - 할인율*/
+	.description .card-discountRate {
+		color : #ff8e77;
+		font-size : 16px;
+		font-weight: bold;
+	}
+	
+	/*상품목록 - 소비자가*/
+	.description .card-consumerPrice{
+	    text-decoration: line-through;
+	    font-size:12px;
+	}
+	
+	/*상품목록 - 판매가*/
+	.description .card-salePrice{
+		font-size:15px;
+		font-weight: bold;
+	}
+	
+	/*INDEX BEST 상품설정*/
+	.best-component {
+		flex : 1 0 33%;
+		height: 500px;
+	}
+	/*상품카드 이미지*/
+	.best-component img{
+		max-width: 100%;
+		display : block;
+	};
+	
+	/*상품카드 설명영역*/
+	.best-component .description {
+		/*font-family: "Roboto","Arial","Nanum Gothic","Malgun Gothic","맑은 고딕","Dotum","돋움","Apple SD Gothic Neo","AppleGothic",sans-serif;*/
+		font-family: 'Poppins',Malgun Gothic, 'ë§‘ì€ ê³ ë”•', Dotum, 'ë‹ì›€', sans-serif;
+		padding : 1rem 0;
+		background-color: #ffffff;
+	}
+	
+	.best-description {
+	    position: relative;
+	    top: -514px;
+	    left: 0;
+	    font-size: 19px;
+	    color: white;
+	    height: 500px;
+	    background: #0000004d;
+	    opacity: 0;
+	    transition: all 0.5s;
+	}
+	
+	.best-description:hover{
+	    opacity: 1;
+	}
+	
+	.best-bottom-description {
+	    position: relative;
+	    top: 384px;
+	    left: 14px;
+	}
+	
+	.best-bottom-description .card-discountRate {
+	    color: #ff7559;
+	    font-size: 16px;
+	    font-weight: bold;
+	}
+	.best-bottom-description .card-salePrice {
+	    font-size: 18px;
+	    font-weight: bold;
+	}
+	.best-bottom-description .card-consumerPrice {
+	    text-decoration: line-through;
+	    font-size: 12px;
+	}
+	
+	/*컴포넌트 타이틀*/
+	.index-title {
+	    padding: 10px 0;
+	    border-bottom: 1px solid black;
+	    width: 58px;
+	    margin: 34px auto;
+	    font-size: 25px;
+	    text-align: center;
+	}
+	
+	/*퀵메뉴*/
+	.quickMenu {
+	    position: fixed;
+	    width: 55px;
+	    right: 25px;
+	    top: 758px;
+	}
+	
+	.quickMenu img {
+	    width : 60px;
+	    height: 60px;
+	}
+	
+	/*인스타버튼*/
+	.quickInsta {
+	    position: fixed;
+	    width: 53px;
+	    height: 53px;
+	    right: 22px;
+	    top: 697px;
+	    border-radius: 50%;
+	    padding: 3px;
+	}
+	
+	/*상품카드 이미지*/
+	.card-image-div {
+	    width: 100%;
+	    overflow: hidden;
+	}
+	
+	/*상품카드 이미지 hover*/
+	.card-image:hover {
+		transform: scale(1.1);
+		transition-duration: .5s;
+	}
+	
+	/*hover시 할인율*/
+	.card-move-discountRate {
+		position: relative;
+		top: 23px;
+		left: 324px;
+		width: 35px;
+		height: 35px;
+		text-align: center;
+		padding-top: 5px;
+		font-weight: bold;
+		font-size: 15px;
+		color: white;
+		z-index: 1;
+		display: inline-block;
+		background: #232323f2;
+		opacity : 0;
+	}
+	
+	/*카드 추가사항*/
+	.index-btnArea {
+		display : flex;
+		margin-top : 14px;
+	}
+	.index-btnArea span {
+		margin-right: 10px;
+	}
+	
+	/*index 카카오배너*/
+	.kakaoBanner {
+		text-align: center;
+	}
+	
+	/*index 카카오배너 이미지*/
+	.kakaoBanner img {
+		width : 100%;
+	}
+	
+	.slick-slide img{
+		margin : 0 auto;
+	}
+	/* slick 화살표 설정 */
+	.slick-arrow{
+	  z-index: 2; /* prev버튼은 위치 이동시 이미지 뒤로 숨겨짐 */
+	}
+	.slick-prev.slick-arrow{ /* prev 이전 */
+		left: 330px;
+	}
+	.slick-next.slick-arrow{ /* next 다음 */
+		right: 330px;
+	}
+
+}

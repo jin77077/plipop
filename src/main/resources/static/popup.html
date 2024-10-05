@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    	<meta charset="utf-8" />
+    	<script src="/js/index.js"></script>
+        <style>
+            body {
+                margin : 0px;
+            }
+
+            .test {
+                background-image: url("/img/popup.jpg");
+                width: 280px;
+                height: 330px;
+                padding : 8px;
+            }
+            .text-title {
+                color : white;
+                font-size: 20px;
+                text-shadow: black 3px 1px 3px;
+                text-align: center;
+            }
+
+            .text-id {
+                color : white;
+                font-size: 20px;
+                text-shadow: black 3px 1px 3px;
+            }
+
+            .text-content {
+                padding: 35px 10px 0 10px;
+                color : white;
+                font-size: 14px;
+                text-shadow: black 3px 1px 3px;
+                text-align: center;
+            }
+
+            .text-content2 {
+                padding: 15px 10px 0 10px;
+                color : white;
+                font-size: 14px;
+                text-shadow: black 3px 1px 3px;
+                text-align: center;
+            }
+            
+            .text-content3 {
+                padding: 15px 10px 0 10px;
+                color : white;
+                font-size: 14px;
+                text-shadow: black 3px 1px 3px;
+                text-align: center;
+            }
+             
+            input[type="button"] {
+				position : absolute;
+				top : 319px;
+				right : 5px;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="test">
+            <hr>
+            <div class="test-title text-title">
+                안내사항
+            </div>
+            <hr>
+            <div class="testDiv1 text-id">
+                <table>
+                    <tr>
+                        <td>
+                            테스트 ID
+                        </td>
+                        <td>
+                            : manager
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            테스트 PW
+                        </td>
+                        <td>
+                            : 1234
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="text-content">
+                * 네이버, 페이스북 API는 테스트버전으로
+            </div>
+            <div class="text-content2">
+                구현되어 현재 로그인은 
+            </div>
+            <div class="text-content3">
+                구글로만 가능합니다.
+            </div>
+            <div>
+            <input type="button" onclick="popupClose()" value="닫기" />
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,166 @@
+/*관리자페이지 탭 설정*/
+dl {
+	display : flex;
+	background: #5c5c5c;
+}
+dt {
+  	height: 40px;
+    float: left;
+    width: 150px;
+    z-index: 9;
+    position: relative;
+    text-align: center;
+    margin: 10px 2px 0 2px;
+    /*border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;*/
+    border-radius: 3px 3px 0 0;
+    background: white;
+    color: #5c5c5c;
+}
+
+dt:first-child{
+	margin-left : 5px;
+}
+
+dt p {
+    position: relative;
+    top: 7px;
+}
+
+dd {
+ 	/*border-top: 1px solid black;*/
+    position: absolute;
+    width: 100%;
+    margin-top: 50px;
+    background: white;
+    height: 535px;
+}
+dd.hidden {
+   display: none;
+}
+
+.disableTab {
+    background-color: #999999;
+    color: #f3f3f3;
+    height: 37px;
+    top: 3px;
+}
+
+/*관리자페이지 category-bar 감춤*/
+.hidden {
+	display: none;
+}
+
+/*관리자페이지 footer 하단 고정*/
+.fixBottom{
+	position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+/*대표이미지 미리보기*/
+#preview-image {
+	width: 130px; 
+	border: 1px solid gray; 
+	margin: 11px 0;
+}
+/* 상세 이미지 미리보기*/
+.imgs_wrap {
+	width : 600px;
+	margin-top : 50px;
+}
+
+.imgs_wrap img {
+	max-width : 200px;
+}
+
+.addList {
+	display:flex;
+}
+
+.listArea {
+    background: #c2c2c2;
+    padding: 6px;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 5px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.nameArea {
+	padding : 0 5px;
+}
+.cancelBtn {
+    color: black;
+    background: #969696;
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    border-radius: 2px;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 7px;
+}
+
+input[type='button'] {
+    width: 42px;
+    height: 25px;
+    font-size: 12px;
+}
+
+.addBtn-table tr {
+	border : 0px solid transparent;
+}
+
+.addBtn-table td {
+	text-align: center;
+}
+
+.product-alter-container {
+	max-width: 1700px;
+	margin : 0 auto;
+}
+
+.product-alter-table input {
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-bottom: 0px;
+    padding-bottom: 7px;
+}
+.product-alter-table {
+    width : 100%;
+    font-size : 14px;
+}
+
+.product-alter-table > tbody > tr:first-child{
+    height : 50px;
+    border-top:2px solid black;
+}
+
+.product-alter-table td{
+    text-align: center;
+}
+
+.product-alter-table th {
+	text-align: center;
+    background-color: #eceaea;
+    padding-left : 12px;
+}
+
+/*number 인풋안에 화살표 없애기*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.update-btn {
+    border: 1px solid gray;
+    background : #eceaea;
+    padding: 3px;
+    width: 52px;
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+	<script th:src="@{/js/index.js}"></script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<section id="#">
+			<!--메인화면 배너-->
+			<div id="slider-div">
+				<div>
+					<a th:href="@{/product/detail/9}">
+						<img src="/img/banner/1.png">
+					</a>
+				</div>
+				<div>
+					<a th:href="@{/product/detail/10}">
+						<img src="/img/banner/2.jpeg">
+					</a>
+				</div>
+				<div>
+					<a th:href="@{/product/detail/3}">
+						<img src="/img/banner/3.jpeg">
+					</a>
+				</div>
+				<div>
+					<a th:href="@{/product/detail/18}">
+						<img src="/img/banner/4.jpeg">
+					</a>
+				</div>
+				<div>
+					<a th:href="@{/product/detail/2}">
+						<img src="/img/banner/5.jpeg">
+					</a>
+				</div>
+				<div>
+					<a th:href="@{/product/detail/11}">
+						<img src="/img/banner/6.jpeg">
+					</a>
+				</div>
+			</div>
+			<!--BEST 상품-->
+			<div class="flex-container">
+				<p class="index-title">BEST</p>
+				<div class="main-content">
+					<article class="best-component" th:each="product, index: ${bestList}">
+						<input type="hidden" class="replaceNo" th:value="${product.productNo}">
+						<input type="hidden" class="replaceCategory" th:value="${product.category}">
+						<input type="hidden" class="replaceMainImage" th:value="${product.mainImage}">
+						<div class="card-image-div">
+								<a th:href="@{/product/detail/{productNo}(productNo= ${product.productNo})}" style="text-decoration: none;" class="mobile">								
+									<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}" class="card-image">
+								</a>
+								<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}" class="card-image normal">
+						</div>
+						<a th:href="@{/product/detail/{productNo}(productNo= ${product.productNo})}" style="text-decoration: none;">
+							<div class="best-description">
+								<div class="index-btnArea" style="margin-left:8px; padding-top:8px;">
+									<span th:if="${product.hotYn}"><img src="/img/btn/hot.png"></span>
+									<span th:if="${product.mdPickYn}"><img src="/img/btn/mdPick.png"></span>
+									<span th:if="${product.quickYn}"><img src="/img/btn/quick.png"></span>
+									<span th:if="${product.bestYn}"><img src="/img/btn/best.png"></span>
+									<span th:if="${product.saleYn}"><img src="/img/btn/sale.png"></span>
+								</div>
+								<div class="best-bottom-description">
+									<div th:text="${product.productName}" class="card-title"></div>
+									<span th:text="${product.discountRate}+'%'" class="card-discountRate"></span>
+									<span th:text="${product.salePrice}" class="card-salePrice"></span>
+									<span th:text="${product.consumerPrice}" class="card-consumerPrice"></span>
+								</div>
+							</div>
+						</a>
+					</article>
+				</div>
+			</div>
+			<!--NEW 상품-->
+			<div class="flex-container">
+				<p class="index-title">NEW</p>
+				<div class="main-content">
+					<article class="new-component component" th:each="product, index: ${newList}">
+						<span th:text="${product.discountRate}+'%'" class="card-move-discountRate"></span>
+						<div class="card-image-div">
+							<a th:href="@{/product/detail/{productNo}(productNo= ${product.productNo})}">
+								<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}" class="card-image">
+							</a>
+						</div>
+						<div class="description">
+							<div th:text="${product.productName}" class="card-title"></div>
+							<span th:text="${product.discountRate}+'%'" class="card-discountRate"></span>
+							<span th:text="${product.salePrice}" class="card-salePrice"></span>
+							<span th:text="${product.consumerPrice}" class="card-consumerPrice"></span>
+							<div class="index-btnArea">
+								<span th:if="${product.hotYn}"><img src="/img/btn/hot.png"></span>
+								<span th:if="${product.mdPickYn}"><img src="/img/btn/mdPick.png"></span>
+								<span th:if="${product.quickYn}"><img src="/img/btn/quick.png"></span>
+								<span th:if="${product.bestYn}"><img src="/img/btn/best.png"></span>
+								<span th:if="${product.saleYn}"><img src="/img/btn/sale.png"></span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+			<!--카카오친구 배너-->
+			<div class="kakaoBanner">
+				<a href="http://pf.kakao.com/_aFTsb">
+					<img th:src="@{/img/banner/kakaoFreind.png}">
+				</a>
+			</div>
+			<!--OUTER 상품-->
+			<div class="flex-container">
+				<p class="index-title">OUTER</p>
+				<div class="main-content">
+					<article class="outer-component component" th:each="product, index: ${outerList}">
+						<span th:text="${product.discountRate}+'%'" class="card-move-discountRate"></span>
+						<div class="card-image-div">
+							<a th:href="@{/product/detail/{productNo}(productNo= ${product.productNo})}">
+								<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}" class="card-image">
+							</a>
+						</div>
+						<div class="description">
+							<div th:text="${product.productName}" class="card-title"></div>
+							<span th:text="${product.discountRate}+'%'" class="card-discountRate"></span>
+							<span th:text="${product.salePrice}" class="card-salePrice"></span>
+							<span th:text="${product.consumerPrice}" class="card-consumerPrice"></span>
+							<div class="index-btnArea">
+								<span th:if="${product.hotYn}"><img src="/img/btn/hot.png"></span>
+								<span th:if="${product.mdPickYn}"><img src="/img/btn/mdPick.png"></span>
+								<span th:if="${product.quickYn}"><img src="/img/btn/quick.png"></span>
+								<span th:if="${product.bestYn}"><img src="/img/btn/best.png"></span>
+								<span th:if="${product.saleYn}"><img src="/img/btn/sale.png"></span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+			<!--TOP 상품-->
+			<div class="flex-container">
+				<p class="index-title">TOP</p>
+				<div class="main-content">
+					<article class="top-component component" th:each="product, index: ${topList}">
+						<span th:text="${product.discountRate}+'%'" class="card-move-discountRate"></span>
+						<div class="card-image-div">
+							<a th:href="@{/product/detail/{productNo}(productNo= ${product.productNo})}">
+								<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}" class="card-image">
+							</a>
+						</div>
+						<div class="description">
+							<div th:text="${product.productName}" class="card-title"></div>
+							<span th:text="${product.discountRate}+'%'" class="card-discountRate"></span>
+							<span th:text="${product.salePrice}" class="card-salePrice"></span>
+							<span th:text="${product.consumerPrice}" class="card-consumerPrice"></span>
+							<div class="index-btnArea">
+								<span th:if="${product.hotYn}"><img src="/img/btn/hot.png"></span>
+								<span th:if="${product.mdPickYn}"><img src="/img/btn/mdPick.png"></span>
+								<span th:if="${product.quickYn}"><img src="/img/btn/quick.png"></span>
+								<span th:if="${product.bestYn}"><img src="/img/btn/best.png"></span>
+								<span th:if="${product.saleYn}"><img src="/img/btn/sale.png"></span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+			<!--PANTS 상품-->
+			<div class="flex-container">
+				<p class="index-title">PANTS</p>
+				<div class="main-content">
+					<article class="pants-component component" th:each="product, index: ${pantsList}">
+						<span th:text="${product.discountRate}+'%'" class="card-move-discountRate"></span>
+						<div class="card-image-div">
+							<a th:href="@{/product/detail/{productNo}(productNo= ${product.productNo})}">
+								<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${product.category},productNo=${product.productNo}, fileName=${product.mainImage})}" class="card-image">
+							</a>
+						</div>
+						<div class="description">
+							<div th:text="${product.productName}" class="card-title"></div>
+							<span th:text="${product.discountRate}+'%'" class="card-discountRate"></span>
+							<span th:text="${product.salePrice}" class="card-salePrice"></span>
+							<span th:text="${product.consumerPrice}" class="card-consumerPrice"></span>
+							<div class="index-btnArea">
+								<span th:if="${product.hotYn}"><img src="/img/btn/hot.png"></span>
+								<span th:if="${product.mdPickYn}"><img src="/img/btn/mdPick.png"></span>
+								<span th:if="${product.quickYn}"><img src="/img/btn/quick.png"></span>
+								<span th:if="${product.bestYn}"><img src="/img/btn/best.png"></span>
+								<span th:if="${product.saleYn}"><img src="/img/btn/sale.png"></span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+			<!--퀵메뉴-->
+			<div class="quickMenu">
+				<a href="https://www.instagram.com/plipop/" target="_blank"><img src="/img/instaIcon.png" class="quickInsta"></a>
+				<a href="#"><img src="/img/up.png"></a>
+				<a href="#bottom"><img src="/img/down.png"></a>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/community/qna.css}" rel="stylesheet">
+	<script th:src="@{/js/qna.js}"></script>
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<!--QNA 비밀번호 확인화면-->
+		<div class="container">
+			<div class="qna-content">
+				<div class="qna-title">
+					Q & A<br>
+					<span class="qna-sub-title">상품 Q&A 입니다.</span>
+				</div>
+				<div class="qna-body">
+					<div class="passwordBox">
+						<p class="box-title">비밀번호 확인</p>
+						<div>
+							<p class="passwordContent">이 글은 비밀글입니다. <strong style="color:#1d77ff;">비밀번호를 입력하여 주세요.</strong><br>
+							관리자는 확인버튼만 누르시면	됩니다.</p>
+							비밀번호 : <input type="password" name="password" id="password" maxlength="4">
+							<input type="hidden" id="boardNum" th:value="${boardNum}">
+							<input type="hidden" id="role" th:value="${#authentication.principal.user.role}">
+						</div>
+						<div class="qna-bottom passwordBtn">
+							<button id="chkPassword">확인</button>
+							<a th:href="@{/community/qna}" class="writeBtn">글목록</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

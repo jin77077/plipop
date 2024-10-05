@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<script th:src="@{/js/member.js}"></script>
+	<script type="text/javascript" th:inline="javascript">
+		var birthYear;
+		var birthMonth;
+		var birthDay;
+		/*<![CDATA[*/
+			birthYear=/*[[${userInfo.birthYear}]]*/
+			birthMonth=/*[[${userInfo.birthMonth}]]*/
+			birthDay=/*[[${userInfo.birthDay}]]*/
+		/*]]>*/
+	</script>
+	<link href="/css/user/join.css" rel="stylesheet">
+	<!--다음 주소 API-->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<!--회원정보 화면-->
+		<section>
+			<div class="container">
+				<!--MODAL 창-->
+				<div class="modal fade" id="defaultModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">알림</h4>
+							</div>
+							<div class="modal-body">
+								<p class="modal-contents"></p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" id="close">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--회원정보-->
+				<form class="join-content" role="form" method="post" action="/members/memberModify">
+					<div class="form-group">
+						<h2>MEMBER INFORMATION</h2>
+					</div>
+					<div class="form-group requiredText">
+						<p><img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">필수사항
+						</p>
+					</div>
+					<div class="form-group">
+						<table class="join-table">
+							<tr>
+								<th>
+									아이디
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">
+								</th>
+								<td>
+									<input type="text" class="joinInput" id="id" name="userId"
+										th:value="${userInfo.userId}" readOnly>
+									<span class="normal">아이디는 변경이 불가능 합니다.</span>
+									<div class="mobile">아이디는 변경이 불가능 합니다.</div>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									비밀번호
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">
+								</th>
+								<td>
+									<input type="password" class="joinInput" id="password" name="password" data-rule-required="true" maxlength="30">
+									<span class="chkPwd normal"></span>
+									<div class="chkPwd mobile"></div>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									비밀번호 확인
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">
+								</th>
+								<td>
+									<input type="password" class="joinInput" id="passwordCheck" data-rule-required="true" maxlength="30">
+									<span class="chkPwdMatch normal"></span>
+									<div class="chkPwdMatch mobile"></div>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									이름
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">
+								</th>
+								<td>
+									<input type="text" class="joinInput onlyHangul" id="name" name="userName" th:value="${userInfo.userName}" data-rule-required="true" maxlength="15">
+									<span class="normal">한글만 입력 가능합니다.</span>
+									<div class="mobile">한글만 입력 가능합니다.</div>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									이메일
+								</th>
+								<td>
+									<input type="text" class="joinInput" id="email" name="email" th:value="${userInfo.email}" data-rule-required="true" maxlength="40">
+									<span> @ </span>
+									<input type="text" class="joinInput" id="emailProvider" name="emailProvider" th:value="${userInfo.emailProvider}" data-rule-required="true" maxlength="40">
+									<select class="joinInput emailSelectBox addLeftMargin" id="emailProviderSelect" name="emailProviderSelect" required>
+										<option value="*" selected>직접입력</option>
+										<option value="naver.com">naver.com</option>
+										<option value="daum.net">daum.net</option>
+										<option value="kakao.com">kakao.com</option>
+										<option value="gmail.com">gmail.com</option>
+										<option value="yahoo.com">yahoo.com</option>
+										<option value="nate.com">nate.com</option>
+										<option value="hotmail.com">hotmail.com</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									휴대폰번호
+								</th>
+								<td>
+									<input type="tel" class="joinInput onlyNumber" id="phoneNumber" name="phone" th:value="${userInfo.phone}" data-rule-required="true" maxlength="11">
+									<span class="normal">-를 제외하고 숫자만 입력하세요.</span>
+									<div class="mobile">-를 제외하고 숫자만 입력하세요.</div>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									주소
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">
+								</th>
+								<td>
+									<table>
+										<tr colspan="2">
+											<td>
+												<div>
+													<input class="col-lg-6 joinInput" id="zipCode" type="text" name="zipCode" th:value="${userInfo.zipCode}" placeholder=" 우편번호" readonly>
+													<input type="button" onclick="findAddr()" value="주소찾기" />
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div>
+													<input class="col-lg-6 joinInput" id="address" type="text" name="address" th:value="${userInfo.address}" placeholder=" 기본주소" readonly>
+													<input class="col-lg-6 joinInput" id="detailAddress" type="text" name="detailAddress" th:value="${userInfo.detailAddress}" placeholder=" 상세주소">
+												</div>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									이메일 수신여부
+								</th>
+								<td>
+									<input type="checkbox" class="joinCheckInput" name="emailReceiveYn" th:checked="${userInfo.emailReceiveYn}">
+									<span>동의함</span>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									문자 수신여부
+								</th>
+								<td>
+									<input type="checkbox" class="joinCheckInput" name="smsReceiveYn" th:checked="${userInfo.smsReceiveYn}">
+									<span>동의함</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<span class="font">추가정보</span>
+					<div class="form-group">
+						<table class="join-table">
+							<tr>
+								<th>성별</th>
+								<td>
+									<th:block th:if="${userInfo.gender} == M">
+										<input id="is_sex0" name="gender" value="M" type="radio" checked>
+										<label for="is_sex0" class="sexText">남자</label>
+										<input id="is_sex1" name="gender" value="F" type="radio">
+										<label for="is_sex1" class="sexText">여자</label>
+									</th:block>
+									<th:block th:if="${userInfo.gender} == F">
+										<input id="is_sex0" name="gender" value="M" type="radio">
+										<label for="is_sex0" class="sexText">남자</label>
+										<input id="is_sex1" name="gender" value="F" type="radio" checked>
+										<label for="is_sex1" class="sexText">여자</label>
+									</th:block>
+								</td>
+							</tr>
+							<tr>
+								<th>생년월일</th>
+								<td>
+									<select name="birthYear" id="year" class="birth-select" th:value="${userInfo.birthYear}" style="width: 60px;"></select>
+									<select name="birthMonth" id="month" class="birth-select" th:value="${userInfo.birthMonth}" style="width: 49px;"></select>
+									<select name="birthDay" id="day" class="birth-select" th:value="${userInfo.birthDay}" style="width: 49px;"></select>
+								</td>
+							</tr>
+							<tr>
+								<th>
+								<td style="display: flex;">
+									<button class="member-btn">
+										<div class="member-btn-area">회원정보수정</div>
+									</button>
+									<a class="member-btn" th:href="@{/}">
+										<div class="member-btn-area">취소</div>
+									</a>
+									<a class="member-btn" th:href="@{/members/memberWithdrawal(userId=${userInfo.userId})} ">
+										<div class="member-btn-area">회원탈퇴</div>
+									</a>
+								</td>
+								</th>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

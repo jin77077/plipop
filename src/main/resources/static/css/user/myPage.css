@@ -1,0 +1,205 @@
+/* 320px 이상 CSS */
+@media only screen and (min-width:320px) {
+	.myPageUl {
+	    text-align: center;
+	    padding : 87px 0 0 0;
+	    display : flex;
+	}
+	
+	.myPageCard {
+	    width: 47%;
+	    height: 228px;
+	    margin: 0 1% 20px 1%;
+	    border: 1px solid #919191;
+	    box-sizing: border-box;
+	    text-align: center;
+	    list-style: none;
+	    display: inline-block;
+	}
+	
+	.myPageCard h3::before {
+	    display: block;
+	    content: "";
+	    width: 65px;
+	    height: 50px;
+	    margin: 0 auto;
+	    padding: 0 0 10px;
+	    background: url("//img.echosting.cafe24.com/skin/base/myshop/sfix_icon_shopMain.png") no-repeat 0 0;
+	}
+	
+	.myPageCard h3 {
+	    font-weight: normal;
+	    font-size: 12px;	
+	}
+	
+	.myPageCard a {
+	    display: block;
+	    padding: 46px 0 25px;
+	    text-decoration: none;
+	    color : #000;	
+	    width: 100%;
+	    height: 100%;
+	}
+	
+	.myPageCard h3 strong {
+	    font-size: 18px;	
+	}
+	
+	.myPageCard h3 span {
+	    display: block;
+	    padding: 6px 0 0;	
+	}
+	
+	.myPageCard p{
+	    font-size : 10px;
+	    line-height: 18px;
+	    color: #8f8f8f;
+	}
+	
+	.myPageCard.order h3:before {
+	    background-position: 12px 0;
+	}
+	
+	.myPageCard.profile h3:before {
+	    background-position: -90px 8px;
+	}
+}
+/* 768px 이상 CSS */ 
+@media only screen and (min-width:768px) {
+	.myPageUl {
+	    text-align: center;
+	    margin: 16px 0 0;
+	    padding-top: 93px;
+	    display : block;
+	}
+	
+	
+	.myPageCard {
+	    width: 18%;
+	    height: 228px;
+	    margin: 0 1% 20px 1%;
+	    border: 1px solid #919191;
+	    box-sizing: border-box;
+	    text-align: center;
+	    list-style: none;
+	    display: inline-block;
+	}
+	
+	.myPageCard h3::before {
+	    display: block;
+	    content: "";
+	    width: 65px;
+	    height: 50px;
+	    margin: 0 auto;
+	    padding: 0 0 10px;
+	    background: url("//img.echosting.cafe24.com/skin/base/myshop/sfix_icon_shopMain.png") no-repeat 0 0;
+	}
+	
+	.myPageCard h3 {
+	    font-weight: normal;
+	    font-size: 12px;	
+	}
+	
+	.myPageCard a {
+	    display: block;
+	    padding: 46px 0 25px;
+	    text-decoration: none;
+	    color : #000;	
+	    width: 100%;
+	    height: 100%;
+	}
+	
+	.myPageCard h3 strong {
+	    font-size: 18px;	
+	}
+	
+	.myPageCard h3 span {
+	    display: block;
+	    padding: 6px 0 0;	
+	}
+	
+	.myPageCard p{
+	    font-size : 12px;
+	    line-height: 18px;
+	    color: #8f8f8f;
+	}
+	
+	.myPageCard.order h3:before {
+	    background-position: 12px 0;
+	}
+	
+	.myPageCard.profile h3:before {
+	    background-position: -90px 8px;
+	}
+}
+/* 1921px 이상 CSS */
+@media only screen and (min-width:1921px) {
+	.myPageUl {
+	    text-align: center;
+	    margin: 16px 0 0;
+	    padding-top: 93px;
+	    display : block;
+	}
+	
+	
+	.myPageCard {
+	    width: 18%;
+	    height: 228px;
+	    margin: 0 1% 20px 1%;
+	    border: 1px solid #919191;
+	    box-sizing: border-box;
+	    text-align: center;
+	    list-style: none;
+	    display: inline-block;
+	}
+	
+	.myPageCard h3::before {
+	    display: block;
+	    content: "";
+	    width: 65px;
+	    height: 50px;
+	    margin: 0 auto;
+	    padding: 0 0 10px;
+	    background: url("//img.echosting.cafe24.com/skin/base/myshop/sfix_icon_shopMain.png") no-repeat 0 0;
+	}
+	
+	.myPageCard h3 {
+	    font-weight: normal;
+	    font-size: 12px;	
+	}
+	
+	.myPageCard a {
+	    display: block;
+	    padding: 46px 0 25px;
+	    text-decoration: none;
+	    color : #000;	
+	    width: 100%;
+	    height: 100%;
+	}
+	
+	.myPageCard h3 strong {
+	    font-size: 18px;	
+	}
+	
+	.myPageCard h3 span {
+	    display: block;
+	    padding: 6px 0 0;	
+	}
+	
+	.myPageCard p{
+	    font-size : 12px;
+	    line-height: 18px;
+	    color: #8f8f8f;
+	}
+	
+	.myPageCard.order h3:before {
+	    background-position: 12px 0;
+	}
+	
+	.myPageCard.profile h3:before {
+	    background-position: -90px 8px;
+	}
+}
+
+
+

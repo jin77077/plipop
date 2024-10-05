@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yg.portfolio.repository.CategoryRepository">
+	
+	<select id="categoryNewCnt" resultType="Integer">
+		SELECT count(*)
+		  FROM product
+		 WHERE productNo
+	</select>
+	
+	<select id="categoryNew" resultType="Product">
+		 SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.*
+				  FROM (SELECT *
+						  FROM product, (SELECT @ROWNUM:=0) AS R
+						 ORDER BY productNo DESC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+	
+	<select id="categoryBestCnt" resultType="Integer">
+		SELECT count(*)
+		  FROM product
+		 WHERE productNo in (SELECT productNo
+		 					   FROM orderDetail 
+		 					   GROUP BY productNo
+		 					   ORDER BY sum(quantity) DESC)
+	</select>
+	
+	<select id="categoryBest" resultType="Product">
+		 SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.*
+				  FROM (SELECT *
+						  FROM product, (SELECT @ROWNUM:=0) AS R
+						 WHERE productNo in (SELECT productNo
+		 					   FROM orderDetail 
+		 					   GROUP BY productNo
+		 					   ORDER BY sum(quantity) DESC)
+						 ORDER BY productNo DESC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+	
+	<select id="categoryOuter" resultType="Product">
+		 SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.*
+				  FROM (SELECT *
+						  FROM product, (SELECT @ROWNUM:=0) AS R
+						 WHERE category = 'outer'
+						 ORDER BY productNo DESC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+	
+	<select id="categoryTop" resultType="Product">
+		SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.*
+				  FROM (SELECT *
+						  FROM product, (SELECT @ROWNUM:=0) AS R
+						 WHERE category = 'top'
+						 ORDER BY productNo DESC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+	
+	<select id="categoryPants" resultType="Product">
+		SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.*
+				  FROM (SELECT *
+						  FROM product, (SELECT @ROWNUM:=0) AS R
+						 WHERE category = 'pants'
+						 ORDER BY productNo DESC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+	
+	<select id="categoryShoes" resultType="Product">
+		SELECT *
+		  FROM (SELECT @ROWNUM:=@ROWNUM+1 as num
+		  			 , A.*
+				  FROM (SELECT *
+						  FROM product, (SELECT @ROWNUM:=0) AS R
+						 WHERE category = 'shoes'
+						 ORDER BY productNo DESC ) A ) B
+		 WHERE num BETWEEN #{startPage} and #{endPage}
+	</select>
+	
+	<select id="categoryCnt" resultType="Integer">
+		SELECT COUNT(*) 
+		  FROM product
+		 WHERE category = #{category} 
+	</select>
+	
+</mapper>

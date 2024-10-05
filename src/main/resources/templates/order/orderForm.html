@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+	<meta charset="utf-8" />
+	<script th:src="@{/js/order.js}"></script>
+	<link th:href="@{/css/product/order.css}" rel="stylesheet">
+	<!--다음 주소 API-->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<!--주문서 작성 화면-->
+		<div class="container">
+			<div class="order-content">
+				<div class="order-title">
+					ORDER<br>
+					<span class="order-sub-title">주문서 작성</span>
+				</div>
+				<div class="order-body order-form">
+					<ul class="guideInfo">
+						<li>상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</li>
+					</ul>
+					<table class="order-table normal">
+						<tr>
+							<td style="width:7%;">이미지</td>
+							<td style="width:65%;">상품정보</td>
+							<td style="width:7%;">판매가</td>
+							<td style="width:7%;">수량</td>
+							<td style="width:7%;">배송비</td>
+							<td style="width:7%;">합계</td>
+						</tr>
+						<tr th:each="orderList, index: ${orderList}" class="orderList-tr">
+							<td>
+								<input type="hidden" class="cartNo" th:value="${orderList.cartNo}">
+								<input type="hidden" class="productNo" th:value="${orderList.productNo}">
+								<a th:href="@{/product/detail/{productNo}(productNo=${orderList.productNo})}">
+									<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${orderList.category},productNo=${orderList.productNo}, fileName=${orderList.mainImage})}"
+										class="mainImage">
+								</a>
+							</td>
+							<td style="text-align: left; padding-left:15px;">
+								<b th:text="${orderList.productName}" class="productName"></b><br>
+								-<span class="color" th:text="${orderList.color}"></span>/
+								<span class="size" th:text="${orderList.size}"></span>
+							</td>
+							<td>
+								<b><span class="salePrice" th:text="${orderList.salePrice}"></span></b>
+							</td>
+							<td>
+								<span class="quantity" th:text="${orderList.quantity}"></span>
+							</td>
+							<td>
+								<span class="deliveryPrice"></span>
+							</td>
+							<td>
+								<b><span class="totalPrice" th:text="${orderList.totalPrice}"></span></b>
+							</td>
+						</tr>
+					</table>
+					<div class="mobile">
+						<div th:each="cartList, index: ${orderList}" class="mobile-order">
+							<div class="order-left">
+								<div>
+									<input type="hidden" class="mobileCartNo"	th:name="|orderFormList[${index.index}].cartNo|" th:value="${cartList.cartNo}">
+									<input type="hidden" class="mobileProductNo" th:value="${cartList.productNo}">
+									<a th:href="@{/product/detail/{productNo}(productNo=${cartList.productNo})}">
+										<img th:src="@{/img/product/{category}/{productNo}/{fileName}(category=${cartList.category},productNo=${cartList.productNo}, fileName=${cartList.mainImage})}" class="mainImage">
+									</a>
+								</div>
+							</div>
+							<div class="order-right">
+								<b th:text="${cartList.productName}"  class="mobileProductName"></b><br>
+								-<span class="mobileColor" th:text="${cartList.color}"></span>/<span class="mobileSize" th:text="${cartList.size}"></span><br>
+								<b>총 금액 : <span class="mobileTotalPrice" th:text="${cartList.totalPrice}"></span></b><br>
+								수량 : <span class="mobileQuantity" th:text="${cartList.quantity}"/>
+							</div>
+						</div>
+					</div>
+					<div class="total-price-area">
+						<span>총 상품금액 </span><strong><span id="totalPrice"></span></strong>
+						<span> + 총 배송비</span><span id="deliveryPrice"></span>
+						<span>= 결제예정금액 </span><strong><span id="totalPay" class="totalPay"></span></strong>
+					</div>
+					<div class="form-group">
+						<h4>주문정보</h4>
+						<div class="requiredText">
+							<p><img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">필수사항
+						</p>
+					</div>
+					</div>
+					<div class="form-group">
+						<table class="join-table">
+							<tr>
+								<th>
+									이름
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif"
+										alt="필수">
+								</th>
+								<td>
+									<input type="hidden" name="userId" th:value="${memberInfo.userId}">
+									<input type="text" class="joinInput onlyHangul" id="name" name="userName"
+										data-rule-required="true" maxlength="15" th:value="${memberInfo.userName}">
+									<span>한글만 입력 가능합니다.</span>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									휴대폰번호
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif"
+										alt="필수">
+								</th>
+								<td>
+									<input type="tel" class="joinInput onlyNumber" id="phone" name="phone"
+										data-rule-required="true" maxlength="11" th:value="${memberInfo.phone}">
+									<span>-를 제외하고 숫자만 입력하세요.</span>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									주소
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif"
+										alt="필수">
+								</th>
+								<td>
+									<table>
+										<tr>
+											<td>
+												<input class="col-lg-6 joinInput" id="zipCode" type="text" name="zipCode" placeholder=" 우편번호"  th:value="${memberInfo.zipCode}" readonly>
+												<input type="button" onclick="findAddr()" value="주소찾기" class="findAddr"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div>
+													<input class="col-lg-6 joinInput" id="address" type="text" name="address" placeholder=" 기본주소"  th:value="${memberInfo.address}" readonly>
+													<input class="col-lg-6 joinInput" id="detailAddress" type="text" name="detailAddress"  th:value="${memberInfo.detailAddress}" placeholder=" 상세주소">
+												</div>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									이메일
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif"
+										alt="필수">
+								</th>
+								<td>
+									<div style="display: flex;">
+										<input type="text" class="joinInput" id="email" name="email"
+											data-rule-required="true" maxlength="40"  th:value="${memberInfo.email}"><span> @ </span>
+										<input type="text" class="joinInput" id="emailProvider" name="emailProvider" th:value="${memberInfo.emailProvider}" data-rule-required="true" maxlength="40">
+									</div>
+									<div>
+									<select class="joinInput emailSelectBox" id="emailProviderSelect" name="emailProviderSelect" required>
+											<option value="*" selected>직접입력</option>
+											<option value="naver.com">naver.com</option>
+											<option value="daum.net">daum.net</option>
+											<option value="kakao.com">kakao.com</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="yahoo.com">yahoo.com</option>
+											<option value="nate.com">nate.com</option>
+											<option value="hotmail.com">hotmail.com</option>
+										</select>
+									</div>
+									<div style="padding-top:10px;">
+										<span>- 이메일을 통해 주문처리과정을 보내드립니다.</span><br>
+										<span>- 이메일 주소란에는 반드시 수신가능한 이메일주소를 입력해 주세요</span>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="form-group">
+						<h4>배송정보</h4>
+						<div class="requiredText">
+							<p><img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">필수사항
+						</p>
+					</div>
+					</div>
+					<div class="form-group">
+						<table class="join-table">
+							<tr>
+								<th>
+									배송지선택
+								</th>
+								<td>
+									<input type="radio"  class="deliveryChoice" id="deliveryChoice1" name="deliveryChoice">
+									<label for="deliveryChoice1">주문자 정보와 동일</label>
+									<input type="radio"  class="deliveryChoice" id="deliveryChoice2" name="deliveryChoice" checked>
+									<label for="deliveryChoice2">새로운 배송지</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									이름
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif"
+										alt="필수">
+								</th>
+								<td>
+									<input type="text" class="joinInput onlyHangul" id="deliveryName" name="deliveryUserName" data-rule-required="true" maxlength="15">
+									<span>한글만 입력 가능합니다.</span>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									휴대폰번호
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">
+								</th>
+								<td>
+									<input type="tel" class="joinInput onlyNumber" id="deliveryPhone" name="deliveryPhone" data-rule-required="true" maxlength="11">
+									<span>-를 제외하고 숫자만 입력하세요.</span>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									주소
+									<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수">
+								</th>
+								<td>
+									<table>
+										<tr colspan="2">
+											<td>
+												<div>
+													<input class="col-lg-6 joinInput" id="deliveryZipCode" type="text" name="deliveryZipCode" placeholder=" 우편번호" readonly>
+													<input type="button" onclick="deliveryfindAddr()" value="주소찾기" class="findAddr"/>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div>
+													<input class="col-lg-6 joinInput" id="deliveryAddress" type="text" name="deliveryAddress" placeholder=" 기본주소" readonly>
+													<input class="col-lg-6 joinInput" id="deliveryDetailAddress" type="text" name="deliveryDetailAddress" placeholder=" 상세주소">
+												</div>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									배송메세지
+								</th>
+								<td>
+									<textarea class="deliveryMessage"></textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="btnDivArea">
+						<div class="normal">
+							<div class="btnDiv">
+								<span id="kakaoPay">카카오페이로 결제하기</span>
+							</div>
+						</div>
+						<div class="mobile">
+							<div class="btnDiv">
+								<span id="mobileKakaoPay">카카오페이로 결제하기</span>
+							</div>
+						</div>
+						<div class="btnDiv">
+							<span><a href="/">취소</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
